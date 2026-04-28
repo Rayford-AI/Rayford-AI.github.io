@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Rayford AI builds Ray Assess, a property-level disaster damage assessment AI for local governments, emergency managers, and recovery teams."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rayford-ai.com">
+    <meta property="og:title" content="Rayford AI | Property-Level Resilience Intelligence">
+    <meta
+      property="og:description"
+      content="Ray turns post-disaster imagery and property records into auditable damage evidence for local governments, emergency managers, and recovery teams."
+    >
+    <meta property="og:image" content="https://rayford-ai.com/assets/brand/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rayford AI | Property-Level Resilience Intelligence">
+    <meta
+      name="twitter:description"
+      content="Ray turns post-disaster imagery and property records into auditable damage evidence for local governments, emergency managers, and recovery teams."
+    >
+    <meta name="twitter:image" content="https://rayford-ai.com/assets/brand/og-image.png">
+    <link rel="canonical" href="https://rayford-ai.com">
+    <title>Rayford AI | Property-Level Resilience Intelligence</title>
+    <link rel="icon" href="assets/brand/official/rayford-logo-github.png" type="image/png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/official/rayford-logo-github.png">
+    <link rel="apple-touch-icon" href="assets/brand/official/rayford-logo-github.png">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script defer data-domain="rayford-ai.com" src="https://plausible.io/js/script.js"></script>
+    <script src="assets/site.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Rayford AI",
+        "url": "https://rayford-ai.com",
+        "logo": "https://rayford-ai.com/assets/brand/official/rayford-logo-github.png",
+        "description": "Property-level disaster damage assessment AI for local governments, emergency managers, and recovery teams.",
+        "founder": {
+          "@type": "Person",
+          "name": "Yifan Yang",
+          "sameAs": "https://www.linkedin.com/in/yifan-yang-14a898186/"
+        },
+        "member": [
+          {
+            "@type": "Person",
+            "name": "Lei Zou",
+            "sameAs": "https://www.linkedin.com/in/leizou/"
+          },
+          {
+            "@type": "Person",
+            "name": "Zhengzhong Tu",
+            "sameAs": "https://www.linkedin.com/in/zhengzhongtu/"
+          },
+          {
+            "@type": "Person",
+            "name": "Heng Cai",
+            "sameAs": "https://www.linkedin.com/in/heng-cai-44b90a85/"
+          }
+        ],
+        "sameAs": [
+          "https://github.com/Rayford-AI",
+          "https://www.linkedin.com/company/rayford-ai"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@rayford-ai.com",
+          "contactType": "sales"
+        }
+      }
+    </script>
+  </head>
+  <body data-lang="en">
+    <a class="skip-link" href="#top">Skip to main content</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Rayford AI home">
+        <img class="brand-logo" src="assets/brand/official/rayford-logo-github.png" alt="Rayford AI">
+        <span>Rayford AI</span>
+      </a>
+      <div class="header-actions">
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="#product" data-i18n="nav.product">Product</a>
+          <a href="#customers" data-i18n="nav.customers">Customers</a>
+          <a href="#validation" data-i18n="nav.validation">Validation</a>
+          <a href="#innovation" data-i18n="nav.innovation">Innovation</a>
+          <a href="#team" data-i18n="nav.team">Team</a>
+          <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+          <a href="demo/" data-i18n="nav.demo">Demo</a>
+        </nav>
+        <div class="language-switch" aria-label="Language">
+          <button type="button" data-lang-toggle="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-toggle="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Rayford AI overview">
+        <div class="hero-scene" aria-hidden="true">
+          <div class="storm-track"></div>
+          <div class="street street-one"></div>
+          <div class="street street-two"></div>
+          <div class="street street-three"></div>
+          <div class="parcel parcel-a" data-risk="high"></div>
+          <div class="parcel parcel-b" data-risk="medium"></div>
+          <div class="parcel parcel-c" data-risk="low"></div>
+          <div class="parcel parcel-d" data-risk="high"></div>
+          <div class="parcel parcel-e" data-risk="medium"></div>
+          <div class="scan-line"></div>
+          <div class="signal signal-a"></div>
+          <div class="signal signal-b"></div>
+          <div class="signal signal-c"></div>
+        </div>
+
+        <div class="hero-content">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Ray by Rayford AI</p>
+          <h1 data-i18n="hero.title">Every property, ready and recoverable.</h1>
+          <p class="hero-text" data-i18n="hero.text">
+            Ray turns local hazard history, post-disaster imagery, and property
+            records into auditable damage evidence for emergency managers,
+            local governments, and recovery teams.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#product" data-i18n="hero.primary">Explore Ray</a>
+            <a class="button primary" href="demo/" data-i18n="hero.demo">View Demo</a>
+            <a class="button secondary" href="#innovation" data-i18n="hero.secondary">Our Research</a>
+          </div>
+        </div>
+
+        <div class="hero-panel" aria-label="Ray Assess sample output">
+          <div class="panel-row">
+            <span>Ray Assess</span>
+            <strong data-i18n="panel.sample">Hurricane Milton sample</strong>
+          </div>
+          <div class="panel-metrics">
+            <div>
+              <span data-i18n="panel.damageScore">Damage score</span>
+              <strong>0.78</strong>
+            </div>
+            <div>
+              <span data-i18n="panel.confidence">Confidence</span>
+              <strong data-i18n="panel.high">High</strong>
+            </div>
+            <div>
+              <span data-i18n="panel.action">Action</span>
+              <strong data-i18n="panel.inspect">Inspect</strong>
+            </div>
+          </div>
+          <p data-i18n="panel.body">
+            Roof edge deformation, debris pattern, and street-level evidence
+            indicate moderate structural damage.
+          </p>
+        </div>
+      </section>
+
+      <section class="section demo-video-band" id="demo-preview" aria-label="Ray Assess video demo">
+        <div class="demo-video-copy">
+          <p class="eyebrow" data-i18n="demoVideo.eyebrow">Interactive demo</p>
+          <h2 data-i18n="demoVideo.title">Watch remote and street evidence become a review-ready decision.</h2>
+          <p data-i18n="demoVideo.text">
+            Remote sensing gives disaster teams coverage at scale. Street-view
+            capture adds ground confirmation. Ray Assess turns both into a
+            damage score, evidence trail, confidence, and inspection guidance.
+          </p>
+          <div class="demo-video-actions">
+            <a class="button primary" href="demo/" data-i18n="demoVideo.primary">Open interactive demo</a>
+            <a class="button secondary" href="#customers" data-i18n="demoVideo.secondary">See who uses it</a>
+          </div>
+        </div>
+        <div class="demo-video-stage">
+          <div class="demo-video-frame">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              controls
+              poster="assets/demo/ray-assess-demo-poster.png"
+              aria-label="Ray Assess cross-view disaster assessment walkthrough"
+            >
+              <source src="assets/demo/ray-assess-demo-preview.webm" type="video/webm">
+              <a href="demo/">Open the Ray Assess demo</a>
+            </video>
+          </div>
+          <div class="demo-signal-strip" aria-label="Ray Assess demo highlights">
+            <div>
+              <span data-i18n="demoVideo.signalOne">Upstream</span>
+              <strong data-i18n="demoVideo.signalOneValue">Remote + street capture</strong>
+            </div>
+            <div>
+              <span data-i18n="demoVideo.signalTwo">Output</span>
+              <strong data-i18n="demoVideo.signalTwoValue">Property evidence packet</strong>
+            </div>
+            <div>
+              <span data-i18n="demoVideo.signalThree">Users</span>
+              <strong data-i18n="demoVideo.signalThreeValue">Emergency management, GIS, recovery teams</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro-band" id="product">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="product.eyebrow">Start here</p>
+          <h2 data-i18n="product.title">Damage assessment and claims triage.</h2>
+          <p data-i18n="product.text">
+            Rayford AI starts with one urgent workflow: help human teams decide
+            which properties need attention first, and why.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="feature-kicker">Ray Assess</span>
+            <h3 data-i18n="feature.assess.title">Property-level damage evidence</h3>
+            <p data-i18n="feature.assess.text">
+              Compare pre-event and post-event imagery, score visible damage,
+              attach evidence, and show confidence at the parcel level.
+            </p>
+          </article>
+          <article class="feature">
+            <span class="feature-kicker">Ray Claims</span>
+            <h3 data-i18n="feature.claims.title">Claims and inspection triage</h3>
+            <p data-i18n="feature.claims.text">
+              Rank properties for adjuster review and package imagery,
+              metadata, and explanations for faster claim workflows.
+            </p>
+          </article>
+          <article class="feature">
+            <span class="feature-kicker">Ray Risk</span>
+            <h3 data-i18n="feature.risk.title">Mitigation and grant support</h3>
+            <p data-i18n="feature.risk.text">
+              Connect damage evidence with local hazard history, mitigation
+              priorities, and FEMA-aligned recovery documentation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="customers">
+        <div>
+          <p class="eyebrow" data-i18n="customers.eyebrow">Beachhead</p>
+          <h2 data-i18n="customers.title">Starting with emergency management teams that need property evidence fast.</h2>
+          <div class="pilot-card">
+            <span data-i18n="pilot.badge">2026 pilots</span>
+            <h3 data-i18n="pilot.title">Pilot pricing available.</h3>
+            <p data-i18n="pilot.text">
+              We are opening a small number of early pilots for historical event
+              validation and property-level assessment workflows.
+            </p>
+            <a href="mailto:contact@rayford-ai.com" data-i18n="pilot.action">Discuss a pilot</a>
+          </div>
+        </div>
+        <div class="customer-list">
+          <article>
+            <h3 data-i18n="customers.emergency.title">Emergency management offices</h3>
+            <p data-i18n="customers.emergency.text">
+              Prioritize preliminary damage assessment when a disaster creates
+              more properties than field teams can inspect immediately.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="customers.governments.title">Local governments and GIS teams</h3>
+            <p data-i18n="customers.governments.text">
+              Convert street-level and aerial data into property-level damage
+              layers for preliminary assessment, recovery planning, and public
+              assistance workflows.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="customers.insurers.title">Adjusters and insurance partners</h3>
+            <p data-i18n="customers.insurers.text">
+              Use the same evidence package for claims triage once the public
+              sector assessment workflow is validated.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section proof-band" id="validation">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="validation.eyebrow">Why now</p>
+          <h2 data-i18n="validation.title">Disaster losses are rising, but property evidence is still slow.</h2>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-item">
+            <strong class="stat-number">27</strong>
+            <p class="stat-label" data-i18n="proof.noaaCount">U.S. billion-dollar weather and climate disasters in 2024.</p>
+            <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener noreferrer">NOAA ↗</a></cite>
+          </article>
+          <article class="stat-item">
+            <strong class="stat-number">$182.7B</strong>
+            <p class="stat-label" data-i18n="proof.noaaDamage">Estimated U.S. damage from 2024 billion-dollar disasters.</p>
+            <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener noreferrer">NOAA ↗</a></cite>
+          </article>
+          <article class="stat-item">
+            <strong class="stat-number">$137B</strong>
+            <p class="stat-label" data-i18n="proof.swissRe">Global insured natural catastrophe losses reported for 2024.</p>
+            <cite><a href="https://www.swissre.com/institute/research/sigma-research/sigma-2025-01-natural-catastrophes-trend.html" target="_blank" rel="noopener noreferrer">Swiss Re ↗</a></cite>
+          </article>
+        </div>
+        <div class="proof-grid proof-feature-grid">
+          <article class="proof-card proof-feature">
+            <span>Mosaic</span>
+            <strong data-i18n="proof.featured">Featured</strong>
+            <p data-i18n="proof.mosaic">
+              Industry coverage of Yifan Yang and Dr. Lei Zou's Texas A&M
+              Hurricane Milton street-view damage assessment research.
+            </p>
+          </article>
+        </div>
+        <div class="source-row">
+          <a href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener noreferrer" data-i18n="source.mosaic">Mosaic feature ↗</a>
+          <a href="https://www.fema.gov/hr/node/619903" target="_blank" rel="noopener noreferrer" data-i18n="source.fema">FEMA PDA process ↗</a>
+        </div>
+      </section>
+
+      <section class="section competitive-band" id="edge">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="edge.eyebrow">Competitive edge</p>
+          <h2 data-i18n="edge.title">Not another imagery vendor or pre-event risk score.</h2>
+          <p data-i18n="edge.text">
+            Rayford AI focuses on post-event decisions: what changed, how severe
+            it is, what evidence supports the score, and what a human reviewer
+            should inspect next.
+          </p>
+        </div>
+        <div class="edge-grid">
+          <article>
+            <span>01</span>
+            <h3 data-i18n="edge.one.title">Street-view plus remote sensing</h3>
+            <p data-i18n="edge.one.text">
+              Imagery-only tools show pixels. Ray Assess compares ground and
+              overhead evidence at the property level.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3 data-i18n="edge.two.title">Built for disaster response</h3>
+            <p data-i18n="edge.two.text">
+              Pre-event underwriting tools forecast risk. Ray packages
+              post-event damage evidence for recovery decisions.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3 data-i18n="edge.three.title">Research-backed audit trail</h3>
+            <p data-i18n="edge.three.text">
+              Model arbitration, confidence, and paper-backed methods make the
+              output easier for public teams to review and defend.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section innovation-band" id="innovation">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="innovation.eyebrow">Innovation</p>
+          <h2 data-i18n="innovation.title">A research-backed engine for property-level resilience.</h2>
+          <p data-i18n="innovation.text">
+            Rayford AI translates peer-reviewed disaster GeoAI research into a
+            practical evidence layer for damage assessment, claims triage, and
+            long-term resilience planning.
+          </p>
+        </div>
+
+        <div class="innovation-layout">
+          <article class="innovation-manifesto">
+            <img src="assets/brand/official/rayford-logo-github.png" alt="" aria-hidden="true">
+            <p class="eyebrow">Ray</p>
+            <h3 data-i18n="innovation.manifesto.title">From hazard data to trusted recovery decisions.</h3>
+            <p data-i18n="innovation.manifesto.text">
+              Ray is designed to read a property across time: what hazards it
+              has faced, what changed after an event, what evidence supports
+              the model's judgment, and what a human reviewer should do next.
+            </p>
+          </article>
+
+          <div class="innovation-pillars" aria-label="Rayford AI innovation pillars">
+            <article>
+              <span>01</span>
+              <h3 data-i18n="innovation.pillar.one.title">Multimodal damage evidence</h3>
+              <p data-i18n="innovation.pillar.one.text">
+                Fuse street-view, satellite, parcel, and local hazard context
+                so property damage is assessed with more than one sensor.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3 data-i18n="innovation.pillar.two.title">Generative missing-view recovery</h3>
+              <p data-i18n="innovation.pillar.two.text">
+                Explore satellite-to-street synthesis when post-disaster ground
+                views are delayed, incomplete, or unsafe to collect.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3 data-i18n="innovation.pillar.three.title">Model arbitration and audit trails</h3>
+              <p data-i18n="innovation.pillar.three.text">
+                Compare model signals, expose confidence, and preserve
+                property-level evidence for human review.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="research-foundation" aria-label="Research foundation">
+          <div class="research-heading">
+            <p class="eyebrow" data-i18n="research.eyebrow">Research foundation</p>
+            <h3 data-i18n="research.title">Papers behind Rayford AI.</h3>
+            <p data-i18n="research.text">
+              The company starts from Yifan Yang's research track in street-view
+              disaster assessment, visual-language models, generative GeoAI,
+              and spatial intelligence.
+            </p>
+          </div>
+
+          <div class="paper-grid">
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/satellite-to-street.png" alt="Satellite-to-Street research framework" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.sat2street.meta">IGARSS 2026 · Conference Paper</span>
+                <h4>Satellite-to-Street: Synthesizing Post-Disaster Views from Satellite Imagery via Generative Vision Models</h4>
+                <p data-i18n="paper.sat2street.text">
+                  A path toward generating street-level disaster evidence from
+                  satellite context when field imagery is missing.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+                  <a href="https://github.com/rayford295/Sat2Street-DisasterGen" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/damagearbiter.png" alt="DamageArbiter research framework" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.damagearbiter.meta">2026 · Preprint</span>
+                <h4>DamageArbiter: A CLIP-Enhanced Multimodal Arbitration Framework for Hurricane Damage Assessment from Street-View Imagery</h4>
+                <p data-i18n="paper.damagearbiter.text">
+                  The arbitration layer that inspires Ray's confidence,
+                  disagreement, and evidence-ranking design.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+                  <a href="https://github.com/rayford295/DamageArbiter" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/bi-temporal-streetview.png" alt="Bi-temporal street-view disaster damage assessment framework" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.hyperlocal.meta">Computers, Environment and Urban Systems · 2025</span>
+                <h4>Hyperlocal Disaster Damage Assessment Using Bi-temporal Street-view Imagery and Pre-trained Vision Models</h4>
+                <p data-i18n="paper.hyperlocal.text">
+                  The journal foundation for comparing pre-event and post-event
+                  street-view imagery at a hyperlocal scale.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0198971525000882" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+                  <a href="https://doi.org/10.1016/j.compenvurbsys.2025.102335" target="_blank" rel="noopener noreferrer">DOI ↗</a>
+                  <a href="https://github.com/rayford295/Bi-Temporal-StreetView" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                  <a href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener noreferrer">Mosaic ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/disastervlp.png" alt="DisasterVLP research framework" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.disastervlp.meta">ICC 2025 · Best Student Paper</span>
+                <h4>Perceiving Multidimensional Disaster Damages from Street-View Images Using Visual-Language Models</h4>
+                <p data-i18n="paper.disastervlp.text">
+                  A visual-language foundation for reading multiple forms of
+                  disaster damage from street-level scenes.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+                  <a href="https://github.com/rayford295/DisasterVLP" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/geolocator.png" alt="GeoLocator research framework" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.geolocator.meta">Applied Sciences · 2024</span>
+                <h4>GeoLocator: A Location-Integrated Large Multimodal Model (LMM) for Inferring Geo-Privacy</h4>
+                <p data-i18n="paper.geolocator.text">
+                  Related spatial intelligence work on location-aware multimodal
+                  reasoning and geo-privacy.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+                  <a href="https://doi.org/10.3390/app14167091" target="_blank" rel="noopener noreferrer">DOI ↗</a>
+                  <a href="https://github.com/rayford295/GeoLocator" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <figure class="paper-figure">
+                <img src="assets/research/text-sam-tree-segmentation.png" alt="Text SAM tree segmentation workflow" loading="lazy">
+              </figure>
+              <div class="paper-body">
+                <span class="paper-meta" data-i18n="paper.spatial.meta">Broader spatial AI foundation</span>
+                <h4>Object detection and segmentation of trees using Text SAM in ArcGIS Online</h4>
+                <p data-i18n="paper.spatial.text">
+                  Esri Press book chapter showing applied geospatial computer
+                  vision workflows that inform Rayford AI's product craft.
+                </p>
+                <div class="paper-actions">
+                  <a href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener noreferrer">Book ↗</a>
+                  <a href="https://github.com/rayford295/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section method-section">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="method.eyebrow">Evidence layer</p>
+          <h2 data-i18n="method.title">From imagery to review-ready decisions.</h2>
+        </div>
+        <ol class="method-flow">
+          <li>
+            <span>01</span>
+            <h3 data-i18n="method.one.title">Link property context</h3>
+            <p data-i18n="method.one.text">Parcel records, local hazard history, and pre-event imagery.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3 data-i18n="method.two.title">Compare post-event evidence</h3>
+            <p data-i18n="method.two.text">Street-view, satellite, drone, and field imagery where available.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3 data-i18n="method.three.title">Arbitrate model signals</h3>
+            <p data-i18n="method.three.text">Damage scoring, multimodal reasoning, and confidence estimates.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3 data-i18n="method.four.title">Export audit trail</h3>
+            <p data-i18n="method.four.text">Property-level evidence packages for human review.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section team-band" id="team">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="team.eyebrow">Team</p>
+          <h2 data-i18n="team.title">Built from disaster GeoAI research with technical mentorship.</h2>
+        </div>
+        <div class="feature-grid team-grid">
+          <article class="feature team-card">
+            <div class="team-card-header">
+              <img class="team-avatar" src="assets/team/yifan-yang.png" alt="Yifan Yang">
+              <div>
+                <span class="feature-kicker" data-i18n="team.yifan.role">Founder</span>
+                <h3>Yifan Yang</h3>
+              </div>
+            </div>
+            <p data-i18n="team.yifan.text">
+              Technical lead for Ray, focused on street-view disaster
+              assessment, visual-language models, multimodal arbitration, and
+              autonomous GeoAI.
+            </p>
+            <a class="team-link" href="https://www.linkedin.com/in/yifan-yang-14a898186/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
+          </article>
+          <article class="feature team-card">
+            <div class="team-card-header">
+              <img class="team-avatar" src="assets/team/lei-zou.jpeg" alt="Dr. Lei Zou">
+              <div>
+                <span class="feature-kicker" data-i18n="team.zou.role">Scientific and technical advisor</span>
+                <h3>Dr. Lei Zou</h3>
+              </div>
+            </div>
+            <p data-i18n="team.zou.text">
+              Advisor for the GeoAI and disaster resilience foundation behind
+              Rayford AI's research-to-venture path.
+            </p>
+            <a class="team-link" href="https://www.linkedin.com/in/leizou/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
+          </article>
+          <article class="feature team-card">
+            <div class="team-card-header">
+              <img class="team-avatar" src="assets/team/zhengzhong-tu.jpeg" alt="Dr. Zhengzhong Tu">
+              <div>
+                <span class="feature-kicker" data-i18n="team.tu.role">Technical advisor</span>
+                <h3>Dr. Zhengzhong Tu</h3>
+              </div>
+            </div>
+            <p data-i18n="team.tu.text">
+              Committee advisor supporting computer vision, multimodal model
+              design, and validation strategy for Ray's disaster assessment
+              engine.
+            </p>
+            <a class="team-link" href="https://www.linkedin.com/in/zhengzhongtu/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
+          </article>
+          <article class="feature team-card">
+            <div class="team-card-header">
+              <img class="team-avatar" src="assets/team/heng-cai.jpeg" alt="Dr. Heng Cai">
+              <div>
+                <span class="feature-kicker" data-i18n="team.cai.role">Technical advisor</span>
+                <h3>Dr. Heng Cai</h3>
+              </div>
+            </div>
+            <p data-i18n="team.cai.text">
+              Committee advisor supporting built environment context,
+              infrastructure resilience, and product-risk review for
+              property-level recovery decisions.
+            </p>
+            <a class="team-link" href="https://www.linkedin.com/in/heng-cai-44b90a85/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section roadmap-band" id="roadmap">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="roadmap.eyebrow">2026 Roadmap</p>
+          <h2 data-i18n="roadmap.title">Ten weeks from research prototype to pilot-ready demo.</h2>
+        </div>
+        <ol class="timeline">
+          <li data-status="active">
+            <span class="milestone-status" data-i18n="status.active">In progress</span>
+            <span>01</span>
+            <p data-i18n="roadmap.one">Complete 40 customer discovery interviews.</p>
+          </li>
+          <li data-status="active">
+            <span class="milestone-status" data-i18n="status.active">In progress</span>
+            <span>02</span>
+            <p data-i18n="roadmap.two">Build a Ray Assess demo for a historical disaster event.</p>
+          </li>
+          <li data-status="planned">
+            <span class="milestone-status" data-i18n="status.planned">Planned</span>
+            <span>03</span>
+            <p data-i18n="roadmap.three">Create two property-level validation case studies.</p>
+          </li>
+          <li data-status="planned">
+            <span class="milestone-status" data-i18n="status.planned">Planned</span>
+            <span>04</span>
+            <p data-i18n="roadmap.four">Secure three serious pilot or LOI conversations.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="closing">
+        <p class="eyebrow">Rayford AI</p>
+        <h2 data-i18n="closing.title">The resilience AI for every property.</h2>
+        <p class="closing-sub" data-i18n="closing.sub">
+          We are scheduling customer discovery and pilot conversations with
+          emergency management, local government, GIS, and recovery teams.
+        </p>
+        <div class="closing-actions">
+          <a class="button primary" href="mailto:contact@rayford-ai.com" data-i18n="closing.contact">Discuss a Pilot</a>
+          <a class="button secondary" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="closing.research">Research Origin ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p data-i18n="footer.text">Rayford AI builds Ray, the property-level resilience intelligence platform.</p>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="mailto:contact@rayford-ai.com" data-i18n="footer.contact">contact@rayford-ai.com</a>
+        <a href="https://github.com/Rayford-AI/rayford-ai" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo">GitHub ↗</a>
+        <a href="https://www.linkedin.com/company/rayford-ai" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkedin">LinkedIn ↗</a>
+        <a href="privacy.html" data-i18n="footer.privacyLink">Privacy</a>
+      </nav>
+      <p class="footer-copy">© 2026 Rayford AI</p>
+      <p class="footer-privacy" data-i18n="footer.privacy">
+        Pilot property imagery is handled only for assessment and validation work under agreed data terms.
+      </p>
+    </footer>
+  </body>
+</html>

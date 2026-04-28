@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Rayford AI Ray Assess cross-view image upload demo for street-view and remote-sensing disaster analysis."
+    />
+    <title>Ray Assess Demo | Rayford AI</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2319372f'/%3E%3Cpath d='M19 46V18h16c7 0 12 4 12 10 0 4-2 7-6 9l7 9H37l-6-8h-3v8H19Zm9-16h6c3 0 5-1 5-4s-2-4-5-4h-6v8Z' fill='%23fffaf0'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header" aria-label="Rayford AI demo header">
+        <a class="brand" href="https://rayford-ai.com/" target="_blank" rel="noreferrer">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span>
+            <strong>Rayford AI</strong>
+            <small>Ray Assess Demo</small>
+          </span>
+        </a>
+        <nav class="nav-links" aria-label="Demo sections">
+          <a href="#upload">Upload</a>
+          <a href="#analysis">Analysis</a>
+          <a href="#evidence">Evidence</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Property-level resilience intelligence</p>
+            <h1>Cross-view disaster evidence, ready for review.</h1>
+            <p class="hero-lede">
+              Upload a street-view or remote-sensing image, or load the paired Altadena
+              wildfire sample to see how Ray Assess turns imagery into damage scores,
+              confidence, evidence bullets, and inspection guidance.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#upload">Start upload</a>
+              <button class="button primary alt" type="button" id="loadAltadenaPair">
+                Load Altadena pair
+              </button>
+              <button class="button ghost" type="button" id="loadStreetSample">
+                Try synthetic street
+              </button>
+              <button class="button ghost" type="button" id="loadRemoteSample">
+                Try synthetic remote
+              </button>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Example assessment card">
+            <div class="card-topline">
+              <span>Ray Assess</span>
+              <span class="pulse-dot">Live demo</span>
+            </div>
+            <div class="score-orbit">
+              <span class="orbit-ring"></span>
+              <strong id="heroScore">0.94</strong>
+              <small>Damage score</small>
+            </div>
+            <dl class="mini-stats">
+              <div>
+                <dt>Confidence</dt>
+                <dd id="heroConfidence">High</dd>
+              </div>
+              <div>
+                <dt>Action</dt>
+                <dd id="heroAction">Inspect</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd id="heroSignal">Cross-view fire loss</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section class="workspace-grid" id="upload">
+          <article class="panel upload-panel">
+            <div class="panel-heading">
+              <p class="eyebrow">01 / Image intake</p>
+              <h2>Select an analysis mode</h2>
+              <p>
+                Use a single uploaded image for quick assessment, or load the included
+                Altadena sample to demonstrate paired remote-sensing and street-view
+                reasoning.
+              </p>
+            </div>
+
+            <fieldset class="mode-toggle" aria-label="Image analysis mode">
+              <label>
+                <input type="radio" name="imageMode" value="street" checked />
+                <span>Street view</span>
+              </label>
+              <label>
+                <input type="radio" name="imageMode" value="remote" />
+                <span>Remote sensing</span>
+              </label>
+              <label>
+                <input type="radio" name="imageMode" value="auto" />
+                <span>Auto detect</span>
+              </label>
+            </fieldset>
+
+            <label class="drop-zone" for="imageInput" id="dropZone">
+              <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" />
+              <span class="drop-icon" aria-hidden="true"></span>
+              <strong>Upload post-disaster imagery</strong>
+              <small>Click to browse or drag a JPG, PNG, or WebP image here</small>
+            </label>
+
+            <div class="upload-meta" id="uploadMeta">
+              <span>No image selected</span>
+              <span>Ready for demo inference</span>
+            </div>
+          </article>
+
+          <article class="panel preview-panel">
+            <div class="panel-heading compact">
+              <p class="eyebrow">02 / Evidence view</p>
+              <h2>Image preview</h2>
+            </div>
+            <div class="preview-frame" id="previewFrame">
+              <img id="previewImage" alt="Uploaded disaster evidence preview" hidden />
+              <div class="pair-preview" id="pairPreview" hidden>
+                <figure>
+                  <img id="pairRemoteImage" alt="Altadena remote-sensing evidence" />
+                  <figcaption>Remote-sensing view</figcaption>
+                </figure>
+                <figure>
+                  <img id="pairStreetImage" alt="Altadena street-view evidence" />
+                  <figcaption>Street-view confirmation</figcaption>
+                </figure>
+              </div>
+              <div class="empty-preview" id="emptyPreview">
+                <span></span>
+                <p>Uploaded imagery and demo evidence callouts will appear here.</p>
+              </div>
+              <div class="hotspot hotspot-one" hidden>
+                <span></span>
+                Visible damage cue
+              </div>
+              <div class="hotspot hotspot-two" hidden>
+                <span></span>
+                Cross-view context
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="analysis-grid" id="analysis">
+          <article class="panel result-panel">
+            <div class="panel-heading compact">
+              <p class="eyebrow">03 / Assessment engine</p>
+              <h2>Assessment</h2>
+            </div>
+
+            <div class="result-status" id="resultStatus">
+              <span class="status-light"></span>
+              <span class="status-text">Waiting for image</span>
+            </div>
+
+            <div class="result-score">
+              <div>
+                <span>Damage score</span>
+                <strong id="damageScore">--</strong>
+              </div>
+              <div class="score-bar" aria-label="Damage score bar">
+                <span id="damageBar"></span>
+              </div>
+            </div>
+
+            <div class="decision-row">
+              <div>
+                <span>Confidence</span>
+                <strong id="confidenceLabel">--</strong>
+              </div>
+              <div>
+                <span>Recommended action</span>
+                <strong id="actionLabel">--</strong>
+              </div>
+              <div>
+                <span>Detected view</span>
+                <strong id="viewLabel">--</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel signals-panel" id="evidence">
+            <div class="panel-heading compact">
+              <p class="eyebrow">04 / Audit trail</p>
+              <h2>Evidence</h2>
+            </div>
+            <ul class="evidence-list" id="evidenceList">
+              <li>Load the Altadena pair or upload an image to generate evidence bullets.</li>
+            </ul>
+          </article>
+
+          <article class="panel metrics-panel">
+            <div class="panel-heading compact">
+              <p class="eyebrow">05 / Visual signals</p>
+              <h2>Signals</h2>
+            </div>
+            <div class="metric-list" id="metricList">
+              <div class="metric-row">
+                <span>Structural loss</span>
+                <strong>--</strong>
+                <i></i>
+              </div>
+              <div class="metric-row">
+                <span>Burn severity</span>
+                <strong>--</strong>
+                <i></i>
+              </div>
+              <div class="metric-row">
+                <span>Sensor agreement</span>
+                <strong>--</strong>
+                <i></i>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="footnote-panel">
+          <strong>Demo note</strong>
+          <p>
+            The Altadena example uses a curated multimodal analysis of the provided
+            remote-sensing and street-view pair. The single-image upload path remains a
+            front-end demo prototype; in production, <code>analyzeImage()</code>
+            can be replaced by Rayford AI's private assessment service without exposing
+            implementation details.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <canvas id="analysisCanvas" hidden></canvas>
+    <script src="./app.js"></script>
+  </body>
+</html>
