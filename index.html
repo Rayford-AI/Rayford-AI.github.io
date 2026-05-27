@@ -1,693 +1,1265 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Rayford AI builds Ray Assess, a property-level disaster damage assessment AI for local governments, emergency managers, and recovery teams."
-    >
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rayford-ai.com">
-    <meta property="og:title" content="Rayford AI | Property-Level Resilience Intelligence">
-    <meta
-      property="og:description"
-      content="Ray turns post-disaster imagery and property records into auditable damage evidence for local governments, emergency managers, and recovery teams."
-    >
-    <meta property="og:image" content="https://rayford-ai.com/assets/brand/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rayford AI | Property-Level Resilience Intelligence">
-    <meta
-      name="twitter:description"
-      content="Ray turns post-disaster imagery and property records into auditable damage evidence for local governments, emergency managers, and recovery teams."
-    >
-    <meta name="twitter:image" content="https://rayford-ai.com/assets/brand/og-image.png">
-    <link rel="canonical" href="https://rayford-ai.com">
-    <title>Rayford AI | Property-Level Resilience Intelligence</title>
-    <link rel="icon" href="assets/brand/official/rayford-logo-github.png" type="image/png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/official/rayford-logo-github.png">
-    <link rel="apple-touch-icon" href="assets/brand/official/rayford-logo-github.png">
-    <link rel="stylesheet" href="assets/styles.css">
-    <script defer data-domain="rayford-ai.com" src="https://plausible.io/js/script.js"></script>
-    <script src="assets/site.js" defer></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Rayford AI",
-        "url": "https://rayford-ai.com",
-        "logo": "https://rayford-ai.com/assets/brand/official/rayford-logo-github.png",
-        "description": "Property-level disaster damage assessment AI for local governments, emergency managers, and recovery teams.",
-        "founder": {
-          "@type": "Person",
-          "name": "Yifan Yang",
-          "sameAs": "https://www.linkedin.com/in/yifan-yang-14a898186/"
-        },
-        "member": [
-          {
-            "@type": "Person",
-            "name": "Lei Zou",
-            "sameAs": "https://www.linkedin.com/in/leizou/"
-          },
-          {
-            "@type": "Person",
-            "name": "Zhengzhong Tu",
-            "sameAs": "https://www.linkedin.com/in/zhengzhongtu/"
-          },
-          {
-            "@type": "Person",
-            "name": "Heng Cai",
-            "sameAs": "https://www.linkedin.com/in/heng-cai-44b90a85/"
-          }
-        ],
-        "sameAs": [
-          "https://github.com/Rayford-AI",
-          "https://www.linkedin.com/company/rayford-ai"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "contact@rayford-ai.com",
-          "contactType": "sales"
-        }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rayford AI builds geospatial physical AI for auditable property and infrastructure intelligence across disaster, resilience, and real-world operations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rayford-ai.com">
+  <meta property="og:title" content="Rayford AI | Geospatial Physical AI">
+  <meta property="og:description" content="Ray turns remote sensing, street-level imagery, and geospatial context into auditable intelligence for disaster, infrastructure, and property decisions.">
+  <meta property="og:image" content="https://rayford-ai.com/assets/brand/og-image.png">
+  <link rel="canonical" href="https://rayford-ai.com">
+  <title>Rayford AI | Geospatial Physical AI</title>
+  <link rel="icon" href="assets/brand/official/rayford-logo-github.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/brand/official/rayford-logo-github.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script defer data-domain="rayford-ai.com" src="https://plausible.io/js/script.js"></script>
+  <style>
+    /* =============================================
+       TOKENS
+    ============================================= */
+    :root {
+      --bg:          #080D18;
+      --bg2:         #0C1220;
+      --card:        #101828;
+      --card-hover:  #141F30;
+      --border:      #1C2B42;
+      --border-hi:   #28405E;
+      --text:        #C8D8EA;
+      --muted:       #637D96;
+      --dim:         #3E5870;
+      --white:       #EAF2FF;
+      --cyan:        #00CCEE;
+      --cyan-dim:    rgba(0,204,238,.10);
+      --cyan-glow:   rgba(0,204,238,.22);
+      --orange:      #FF6030;
+      --orange-dim:  rgba(255,96,48,.10);
+      --green:       #1FD46A;
+      --green-dim:   rgba(31,212,106,.08);
+      --amber:       #F5A623;
+      --shadow:      0 24px 80px rgba(0,0,0,.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 74px; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* grain overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+      opacity: .5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+    /* =============================================
+       TYPOGRAPHY HELPERS
+    ============================================= */
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    /* =============================================
+       LAYOUT
+    ============================================= */
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 72px);
+    }
+
+    .sec { padding: clamp(72px, 10vw, 128px) 0; }
+
+    .sec-hd {
+      max-width: 660px;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+    .sec-hd h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.14;
+      color: var(--white);
+      margin-top: 12px;
+    }
+    .sec-hd p {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* =============================================
+       REVEAL ANIMATION
+    ============================================= */
+    .rv {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .rv.on { opacity: 1; transform: none; }
+    .rv.d1 { transition-delay: .08s; }
+    .rv.d2 { transition-delay: .16s; }
+    .rv.d3 { transition-delay: .24s; }
+    .rv.d4 { transition-delay: .32s; }
+
+    /* =============================================
+       NAV
+    ============================================= */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 56px);
+      background: rgba(8,13,24,.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 11px;
+    }
+    .nav-logo {
+      width: 34px; height: 34px; border-radius: 7px;
+      border: 1px solid var(--border); object-fit: cover;
+    }
+    .nav-wordmark { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); }
+    .nav-sub {
+      font-family: 'JetBrains Mono', monospace; font-size: .55rem;
+      color: var(--cyan); opacity: .7; display: block; line-height: 1; margin-top: 2px;
+      letter-spacing: .1em;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      font-size: .83rem; font-weight: 500; color: var(--muted);
+      padding: 6px 11px; border-radius: 6px;
+      transition: color .18s, background .18s;
+    }
+    .nav-links a:hover { color: var(--white); background: var(--card); }
+
+    .btn-nav {
+      font-size: .82rem !important;
+      font-weight: 600 !important;
+      color: var(--bg) !important;
+      background: var(--cyan) !important;
+      border-radius: 7px !important;
+      padding: 7px 16px !important;
+      transition: box-shadow .2s, transform .2s !important;
+    }
+    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--cyan-glow) !important; }
+
+    .lang-sw {
+      display: flex; gap: 1px;
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+      margin-left: 10px;
+    }
+    .lang-sw button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: .76rem; font-weight: 500;
+      color: var(--muted); padding: 5px 9px;
+      transition: background .18s, color .18s;
+    }
+    .lang-sw button[aria-pressed="true"] { background: var(--card); color: var(--white); }
+
+    .ham {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .ham span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+    /* =============================================
+       BUTTONS
+    ============================================= */
+    .btn-p, .btn-s {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: .88rem;
+      padding: 11px 22px; border-radius: 8px; border: none; cursor: pointer;
+      transition: transform .18s, box-shadow .18s, background .18s, border-color .18s;
+      text-decoration: none;
+    }
+    .btn-p {
+      background: var(--cyan); color: var(--bg);
+    }
+    .btn-p:hover { transform: translateY(-1px); box-shadow: 0 8px 28px var(--cyan-glow); }
+
+    .btn-s {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-s:hover { border-color: var(--border-hi); background: var(--card); color: var(--white); }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 110px clamp(20px, 5vw, 72px) 72px;
+      max-width: 1340px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* coordinate grid */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,204,238,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,204,238,.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 13px 5px 7px; margin-bottom: 26px;
+      animation: fsu .5s ease both;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
+      animation: blink 2s ease infinite;
+    }
+    .hero-badge span {
+      font-family: 'JetBrains Mono', monospace; font-size: .65rem;
+      color: var(--muted); letter-spacing: .06em;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 4.8vw, 4rem);
+      font-weight: 800; line-height: 1.08; letter-spacing: -.03em;
+      color: var(--white); margin-bottom: 18px;
+      animation: fsu .5s .08s ease both;
+    }
+    .hero-content h1 em { font-style: normal; color: var(--cyan); }
+
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.72;
+      max-width: 460px; margin-bottom: 32px;
+      animation: fsu .5s .16s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 11px; flex-wrap: wrap;
+      animation: fsu .5s .24s ease both;
+    }
+
+    /* =============================================
+       HERO VISUALIZATION
+    ============================================= */
+    .hero-viz {
+      position: relative; z-index: 2;
+      animation: fsu .7s .18s ease both;
+    }
+
+    .geo-canvas {
+      position: relative;
+      width: 100%; max-width: 500px;
+      aspect-ratio: 1 / 1.05;
+      margin-left: auto;
+    }
+
+    .map-bg {
+      position: absolute; inset: 0;
+      background: var(--card);
+      border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    }
+
+    /* inner grid */
+    .map-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,204,238,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,204,238,.055) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+
+    /* scan line */
+    .map-bg::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      box-shadow: 0 0 18px var(--cyan), 0 0 50px var(--cyan-glow);
+      animation: scan 4s ease infinite;
+    }
+
+    .map-streets-h, .map-streets-v {
+      position: absolute; background: rgba(0,204,238,.07);
+    }
+    .map-streets-h { height: 1px; left: 0; right: 0; }
+    .map-streets-v { width: 1px; top: 0; bottom: 0; }
+
+    .map-top {
+      position: absolute; top: 11px; left: 12px; z-index: 2;
+      font-family: 'JetBrains Mono', monospace; font-size: .57rem;
+      color: var(--dim); line-height: 1.6;
+    }
+    .map-event {
+      position: absolute; top: 11px; right: 12px; z-index: 2;
+      background: rgba(255,96,48,.12); border: 1px solid rgba(255,96,48,.28);
+      border-radius: 5px; padding: 3px 9px;
+      font-family: 'JetBrains Mono', monospace; font-size: .57rem; color: var(--orange);
+    }
+
+    /* parcels */
+    .pc {
+      position: absolute; border-radius: 3px; border: 1px solid;
+    }
+    .pc-lbl {
+      position: absolute; top: -18px; left: 0;
+      font-family: 'JetBrains Mono', monospace; font-size: .55rem; white-space: nowrap;
+    }
+    .pc-score {
+      position: absolute; bottom: 3px; right: 4px;
+      font-family: 'JetBrains Mono', monospace; font-size: .58rem; font-weight: 500;
+    }
+
+    .ph { border-color: var(--orange); background: rgba(255,96,48,.12); }
+    .ph .pc-lbl, .ph .pc-score { color: var(--orange); }
+    .pm { border-color: var(--amber); background: rgba(245,166,35,.09); }
+    .pm .pc-lbl, .pm .pc-score { color: var(--amber); }
+    .pl { border-color: var(--green); background: rgba(31,212,106,.07); }
+    .pl .pc-lbl, .pl .pc-score { color: var(--green); }
+
+    .pa1 { top:19%; left:14%; width:19%; height:15%; animation: fh 3.2s .4s ease infinite; }
+    .pa2 { top:37%; left:39%; width:22%; height:17%; animation: fm 3.4s .9s ease infinite; }
+    .pa3 { top:57%; left:21%; width:17%; height:13%; }
+    .pa4 { top:54%; left:58%; width:20%; height:16%; animation: fh 3.0s 1.4s ease infinite; }
+    .pa5 { top:27%; left:62%; width:15%; height:11%; }
+    .pa6 { top:72%; left:43%; width:19%; height:12%; animation: fm 3.6s 2.0s ease infinite; }
+
+    /* coord labels on edges */
+    .cl { position: absolute; font-family: 'JetBrains Mono', monospace; font-size: .52rem; color: var(--dim); }
+    .cl-l { left: 7px; }
+    .cl-b { bottom: 7px; }
+
+    /* assessment panel */
+    .ap {
+      position: absolute; right: -18px; bottom: 38px; width: 204px;
+      background: rgba(12,18,32,.96); border: 1px solid var(--border);
+      border-radius: 11px; padding: 13px 15px;
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow), 0 0 32px var(--cyan-glow);
+    }
+    .ap-head {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px;
+    }
+    .ap-title {
+      font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--cyan); letter-spacing: .05em;
+    }
+    .ap-live {
+      display: flex; align-items: center; gap: 3px;
+      font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: var(--green);
+    }
+    .live-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+      animation: blink 1.6s ease infinite;
+    }
+    .ap-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 0; border-bottom: 1px solid rgba(28,43,66,.5);
+    }
+    .ap-row:last-child { border: none; }
+    .ap-lbl { font-size: .7rem; color: var(--muted); }
+    .ap-val {
+      font-family: 'JetBrains Mono', monospace; font-size: .7rem; font-weight: 500;
+    }
+    .c-hi { color: var(--orange); }
+    .c-cy { color: var(--cyan); }
+    .c-lo { color: var(--green); }
+    .c-am { color: var(--amber); }
+
+    .sig-bars { display: flex; gap: 2px; align-items: flex-end; height: 11px; }
+    .sig-bars span { width: 4px; border-radius: 1px; background: var(--cyan); }
+    .sig-bars span:nth-child(1) { height: 4px; }
+    .sig-bars span:nth-child(2) { height: 7px; }
+    .sig-bars span:nth-child(3) { height: 10px; }
+    .sig-bars span:nth-child(4) { height: 11px; opacity: .5; }
+
+    /* =============================================
+       STATS BAND
+    ============================================= */
+    .stats-band {
+      background: var(--card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      display: flex; justify-content: space-around; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+      padding: 28px clamp(20px, 5vw, 72px);
+      max-width: 1180px; margin: 0 auto;
+    }
+    .stat-it { text-align: center; }
+    .stat-n {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 800; color: var(--white); line-height: 1; display: block;
+    }
+    .stat-n sup { font-size: .55em; color: var(--cyan); }
+    .stat-l { font-size: .78rem; color: var(--muted); margin-top: 5px; max-width: 150px; }
+    .stat-div { width: 1px; height: 44px; background: var(--border); }
+
+    /* =============================================
+       PRODUCT SECTION
+    ============================================= */
+    .prod-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    .prod-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 26px; position: relative; overflow: hidden;
+      transition: border-color .25s, transform .25s;
+    }
+    .prod-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity .25s;
+    }
+    .prod-card.ac::after { background: var(--orange); }
+    .prod-card.cl::after { background: var(--cyan); }
+    .prod-card.ri::after { background: var(--green); }
+    .prod-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+    .prod-card:hover::after { opacity: 1; }
+
+    .prod-icon {
+      width: 38px; height: 38px; border-radius: 8px; display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 18px;
+    }
+    .ac .prod-icon { background: var(--orange-dim); }
+    .cl .prod-icon { background: var(--cyan-dim); }
+    .ri .prod-icon { background: var(--green-dim); }
+
+    .prod-kicker {
+      font-family: 'JetBrains Mono', monospace; font-size: .63rem;
+      letter-spacing: .09em; text-transform: uppercase; display: block; margin-bottom: 9px;
+    }
+    .ac .prod-kicker { color: var(--orange); }
+    .cl .prod-kicker { color: var(--cyan); }
+    .ri .prod-kicker { color: var(--green); }
+
+    .prod-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
+    .prod-card p  { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+    /* =============================================
+       PROCESS SECTION
+    ============================================= */
+    .proc-sec {
+      background: var(--card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .proc-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
+    }
+    .proc-steps::before {
+      content: ''; position: absolute; top: 23px; left: 8%; right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), var(--cyan), var(--border));
+    }
+    .proc-step { padding: 0 20px; text-align: center; }
+    .proc-num {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px; font-family: 'JetBrains Mono', monospace; font-size: .76rem;
+      color: var(--cyan); position: relative; z-index: 1;
+    }
+    .proc-step h4 { font-size: .98rem; font-weight: 600; color: var(--white); margin-bottom: 7px; }
+    .proc-step p  { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+
+    /* =============================================
+       EDGE GRID
+    ============================================= */
+    .edge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .edge-card {
+      border: 1px solid var(--border); border-radius: 12px; padding: 26px;
+      transition: border-color .25s;
+    }
+    .edge-card:hover { border-color: var(--border-hi); }
+    .edge-n { font-family: 'JetBrains Mono', monospace; font-size: .66rem; color: var(--dim); display: block; margin-bottom: 11px; }
+    .edge-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 9px; line-height: 1.3; }
+    .edge-card p  { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+
+    /* =============================================
+       RESEARCH
+    ============================================= */
+    .res-sec {
+      background: var(--card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .paper-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .paper-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; transition: border-color .25s, transform .25s;
+    }
+    .paper-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+
+    .paper-img { height: 130px; overflow: hidden; background: var(--bg2); }
+    .paper-img img { width: 100%; height: 100%; object-fit: cover; opacity: .8; transition: opacity .3s; }
+    .paper-card:hover .paper-img img { opacity: 1; }
+
+    .paper-body { padding: 18px; }
+    .paper-meta { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--cyan); display: block; margin-bottom: 9px; }
+    .paper-card h4 { font-size: .92rem; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 9px; }
+    .paper-card p  { font-size: .8rem; color: var(--muted); line-height: 1.6; margin-bottom: 13px; }
+    .paper-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pl-a {
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--cyan);
+      border: 1px solid rgba(0,204,238,.2); padding: 3px 9px; border-radius: 4px;
+      transition: background .18s, border-color .18s;
+    }
+    .pl-a:hover { background: var(--cyan-dim); border-color: rgba(0,204,238,.4); }
+
+    /* =============================================
+       CUSTOMERS
+    ============================================= */
+    .cust-sec {
+      background: var(--card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cust-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+
+    .cust-list { display: flex; flex-direction: column; }
+    .cust-item { padding: 22px 0; border-bottom: 1px solid var(--border); }
+    .cust-item:last-child { border: none; }
+    .cust-item h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 7px; }
+    .cust-item p  { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+
+    .pilot-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 26px; position: relative; overflow: hidden;
+    }
+    .pilot-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+    }
+    .pilot-badge {
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--cyan);
+      background: var(--cyan-dim); border: 1px solid rgba(0,204,238,.2);
+      padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 14px;
+    }
+    .pilot-card h3 { font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 9px; }
+    .pilot-card p  { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+    .pilot-card a  {
+      font-size: .86rem; font-weight: 600; color: var(--cyan);
+      border-bottom: 1px solid rgba(0,204,238,.3); padding-bottom: 1px;
+      transition: border-color .18s;
+    }
+    .pilot-card a:hover { border-color: var(--cyan); }
+
+    /* =============================================
+       MARKET STATS
+    ============================================= */
+    .mkt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .mkt-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 26px;
+    }
+    .mkt-card strong {
+      font-family: 'Syne', sans-serif; font-size: clamp(1.9rem, 2.8vw, 2.6rem);
+      font-weight: 800; color: var(--white); line-height: 1; display: block; margin-bottom: 9px;
+    }
+    .mkt-card p   { font-size: .86rem; color: var(--muted); line-height: 1.6; margin-bottom: 11px; }
+    .mkt-card cite { font-style: normal; }
+    .mkt-card cite a {
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--cyan);
+      border-bottom: 1px solid rgba(0,204,238,.3);
+    }
+
+    /* =============================================
+       TEAM
+    ============================================= */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .team-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
+      transition: border-color .25s;
+    }
+    .team-card:hover { border-color: var(--border-hi); }
+    .team-av {
+      width: 60px; height: 60px; border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--border); margin-bottom: 14px; background: var(--bg2);
+    }
+    .team-av img { width: 100%; height: 100%; object-fit: cover; }
+    .team-role {
+      font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+      letter-spacing: .07em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 5px;
+    }
+    .team-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 9px; }
+    .team-card p  { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 13px; }
+    .team-lnk { font-size: .78rem; color: var(--dim); transition: color .18s; }
+    .team-lnk:hover { color: var(--cyan); }
+
+    /* =============================================
+       ROADMAP
+    ============================================= */
+    .road-sec {
+      background: var(--card);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .timeline {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; list-style: none; position: relative;
+    }
+    .timeline::before {
+      content: ''; position: absolute; top: 19px; left: 4%; right: 4%;
+      height: 1px; background: var(--border);
+    }
+    .tl-item { padding: 0 14px; }
+    .tl-dot {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .7rem;
+      margin-bottom: 18px; position: relative; z-index: 1; border: 1px solid;
+    }
+    .tl-item[data-s="active"] .tl-dot {
+      background: var(--cyan-dim); border-color: var(--cyan); color: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan-glow);
+    }
+    .tl-item[data-s="planned"] .tl-dot {
+      background: var(--bg); border-color: var(--border); color: var(--dim);
+    }
+    .tl-status {
+      font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+      letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 7px;
+    }
+    .tl-item[data-s="active"] .tl-status { color: var(--cyan); }
+    .tl-item[data-s="planned"] .tl-status { color: var(--dim); }
+    .tl-item p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* =============================================
+       CTA
+    ============================================= */
+    .cta-sec {
+      text-align: center;
+      padding: clamp(80px, 12vw, 140px) clamp(20px, 5vw, 72px);
+      position: relative; overflow: hidden;
+    }
+    .cta-sec::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px; pointer-events: none;
+      background: radial-gradient(ellipse, rgba(0,204,238,.055) 0%, transparent 68%);
+    }
+    .cta-sec .eyebrow { display: block; margin-bottom: 14px; }
+    .cta-sec h2 {
+      font-size: clamp(2rem, 3.8vw, 3.3rem); font-weight: 800;
+      color: var(--white); letter-spacing: -.03em; line-height: 1.1;
+      max-width: 760px; margin: 0 auto 14px;
+    }
+    .cta-sec > p {
+      font-size: 1.02rem; color: var(--muted); max-width: 540px;
+      margin: 0 auto 32px; line-height: 1.72;
+    }
+    .cta-actions { display: flex; gap: 11px; justify-content: center; flex-wrap: wrap; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 38px clamp(20px, 5vw, 72px);
+    }
+    .foot-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: center; gap: 22px;
+    }
+    .foot-brand p { font-size: .8rem; color: var(--dim); margin-top: 7px; max-width: 320px; line-height: 1.6; }
+    .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .foot-links a { font-size: .83rem; color: var(--muted); transition: color .18s; }
+    .foot-links a:hover { color: var(--white); }
+    .foot-copy { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--dim); }
+
+    /* =============================================
+       KEYFRAMES
+    ============================================= */
+    @keyframes fsu {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .45; }
+    }
+    @keyframes scan {
+      0%   { top: -5%; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+    @keyframes fh {
+      0%,100% { background: rgba(255,96,48,.10); }
+      50%     { background: rgba(255,96,48,.24); box-shadow: 0 0 10px rgba(255,96,48,.28); }
+    }
+    @keyframes fm {
+      0%,100% { background: rgba(245,166,35,.07); }
+      50%     { background: rgba(245,166,35,.20); box-shadow: 0 0 10px rgba(245,166,35,.22); }
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 96px; }
+      .hero-viz { max-width: 460px; margin: 0 auto; }
+      .prod-grid, .edge-grid, .mkt-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .proc-steps { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+      .proc-steps::before { display: none; }
+      .timeline { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .timeline::before { display: none; }
+      .paper-grid { grid-template-columns: repeat(2, 1fr); }
+      .cust-layout { grid-template-columns: 1fr; gap: 44px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: var(--card); border-bottom: 1px solid var(--border);
+        padding: 14px 20px; gap: 4px; z-index: 89;
       }
-    </script>
-  </head>
-  <body data-lang="en">
-    <a class="skip-link" href="#top">Skip to main content</a>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Rayford AI home">
-        <img class="brand-logo" src="assets/brand/official/rayford-logo-github.png" alt="Rayford AI">
-        <span>Rayford AI</span>
-      </a>
-      <div class="header-actions">
-        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="nav" id="primary-nav" aria-label="Primary navigation">
-          <a href="#product" data-i18n="nav.product">Product</a>
-          <a href="#customers" data-i18n="nav.customers">Customers</a>
-          <a href="#validation" data-i18n="nav.validation">Validation</a>
-          <a href="#innovation" data-i18n="nav.innovation">Innovation</a>
-          <a href="#team" data-i18n="nav.team">Team</a>
-          <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
-          <a href="demo/" data-i18n="nav.demo">Demo</a>
-        </nav>
-        <div class="language-switch" aria-label="Language">
-          <button type="button" data-lang-toggle="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-toggle="zh" aria-pressed="false">中文</button>
+      .ham { display: flex; }
+      .prod-grid, .edge-grid, .mkt-grid, .team-grid, .paper-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .stats-inner { gap: 28px; }
+      .stat-div { display: none; }
+      .ap { right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="top">
+  <a class="nav-brand" href="#top" aria-label="Rayford AI home">
+    <img class="nav-logo" src="assets/brand/official/rayford-logo-github.png" alt="">
+    <div>
+      <span class="nav-wordmark">Rayford AI</span>
+      <span class="nav-sub">GEOSPATIAL PHYSICAL AI</span>
+    </div>
+  </a>
+
+  <div style="display:flex;align-items:center;gap:6px">
+    <nav>
+      <ul class="nav-links" id="primary-nav" aria-label="Primary navigation">
+        <li><a href="#product">Platform</a></li>
+        <li><a href="#technology">Research</a></li>
+        <li><a href="#customers">Customers</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#roadmap">Plan</a></li>
+        <li><a href="demo/">Demo</a></li>
+        <li><a class="btn-nav" href="mailto:contact@rayford-ai.com">Discuss a Pilot →</a></li>
+      </ul>
+    </nav>
+    <div class="lang-sw" aria-label="Language">
+      <button aria-pressed="true" data-lang-toggle="en">EN</button>
+      <button aria-pressed="false" data-lang-toggle="zh">中文</button>
+    </div>
+    <button class="ham" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-label="Rayford AI overview">
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>GEOSPATIAL PHYSICAL AI · RAY BY RAYFORD AI</span>
+      </div>
+      <h1>The intelligence layer for the <em>physical world.</em></h1>
+      <p class="hero-sub">
+        Ray turns remote sensing, street-level imagery, and geospatial context into auditable intelligence for disaster, infrastructure, and property decisions.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-p" href="#product">Explore Ray Platform →</a>
+        <a class="btn-s" href="demo/">View Demo</a>
+        <a class="btn-s" href="#technology">Our Research</a>
+      </div>
+    </div>
+
+    <!-- GEOSPATIAL VISUALIZATION -->
+    <div class="hero-viz" aria-hidden="true">
+      <div class="geo-canvas">
+        <div class="map-bg">
+          <!-- street grid -->
+          <div class="map-streets-h" style="top:34%"></div>
+          <div class="map-streets-h" style="top:64%"></div>
+          <div class="map-streets-v" style="left:37%"></div>
+          <div class="map-streets-v" style="left:70%"></div>
+
+          <!-- coord labels -->
+          <div class="cl cl-l" style="top:24%">29.72°N</div>
+          <div class="cl cl-l" style="top:50%">29.71°N</div>
+          <div class="cl cl-l" style="top:74%">29.70°N</div>
+          <div class="cl cl-b" style="left:12%">-95.39°W</div>
+          <div class="cl cl-b" style="left:38%">-95.38°W</div>
+          <div class="cl cl-b" style="left:63%">-95.37°W</div>
+
+          <div class="map-top">RAY ASSESS<br>HURRICANE MILTON</div>
+          <div class="map-event">POST-EVENT</div>
+
+          <!-- parcels -->
+          <div class="pc ph pa1"><span class="pc-lbl">P-041</span><span class="pc-score">0.84</span></div>
+          <div class="pc pm pa2"><span class="pc-lbl">P-067</span><span class="pc-score">0.51</span></div>
+          <div class="pc pl pa3"><span class="pc-lbl">P-023</span><span class="pc-score">0.12</span></div>
+          <div class="pc ph pa4"><span class="pc-lbl">P-092</span><span class="pc-score">0.77</span></div>
+          <div class="pc pl pa5"><span class="pc-lbl">P-015</span><span class="pc-score">0.09</span></div>
+          <div class="pc pm pa6"><span class="pc-lbl">P-058</span><span class="pc-score">0.48</span></div>
+        </div>
+
+        <!-- ASSESS PANEL -->
+        <aside class="ap" aria-label="Ray Assess sample output">
+          <div class="ap-head">
+            <span class="ap-title">RAY ASSESS · P-041</span>
+            <div class="ap-live"><span class="live-dot"></span> LIVE</div>
+          </div>
+          <div class="ap-row"><span class="ap-lbl">Damage score</span><span class="ap-val c-hi">0.84</span></div>
+          <div class="ap-row"><span class="ap-lbl">Confidence</span><span class="ap-val c-cy">HIGH</span></div>
+          <div class="ap-row"><span class="ap-lbl">Evidence</span><span class="ap-val" style="font-size:.65rem;color:var(--muted)">Roof + debris</span></div>
+          <div class="ap-row"><span class="ap-lbl">Action</span><span class="ap-val c-hi">INSPECT</span></div>
+          <div class="ap-row"><span class="ap-lbl">Signal</span><div class="sig-bars"><span></span><span></span><span></span><span></span></div></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS BAND ============ -->
+  <div class="stats-band" role="region" aria-label="Key statistics">
+    <div class="stats-inner">
+      <div class="stat-it">
+        <span class="stat-n">27<sup>events</sup></span>
+        <p class="stat-l">U.S. billion-dollar climate disasters in 2024</p>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-it">
+        <span class="stat-n">$182.7<sup>B</sup></span>
+        <p class="stat-l">Estimated U.S. damage from 2024 disasters</p>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-it">
+        <span class="stat-n">$137<sup>B</sup></span>
+        <p class="stat-l">Global insured catastrophe losses, 2024</p>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-it">
+        <span class="stat-n">5<sup>+papers</sup></span>
+        <p class="stat-l">Published GeoAI research behind Ray's engine</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PLATFORM ============ -->
+  <section class="sec" id="product">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">The Ray Platform</span>
+        <h2>Start with disaster. Build toward physical-world intelligence.</h2>
+        <p>Ray is the intelligence system for real-world perception, evidence, and action — starting with the most urgent workflow in property decisions: what changed after a disaster, and what it means.</p>
+      </div>
+      <div class="prod-grid">
+        <article class="prod-card ac rv d1">
+          <div class="prod-icon">🛰️</div>
+          <span class="prod-kicker">Ray Assess</span>
+          <h3>Property-level damage evidence</h3>
+          <p>Compare pre-event and post-event imagery, score visible damage, attach evidence, and show confidence at the parcel level for auditable assessment workflows.</p>
+        </article>
+        <article class="prod-card cl rv d2">
+          <div class="prod-icon">📋</div>
+          <span class="prod-kicker">Ray Claims</span>
+          <h3>Claims and inspection triage</h3>
+          <p>Rank properties for adjuster review and package imagery, metadata, and explanations for faster, more defensible insurance claim workflows.</p>
+        </article>
+        <article class="prod-card ri rv d3">
+          <div class="prod-icon">🗺️</div>
+          <span class="prod-kicker">Ray Risk</span>
+          <h3>Hazard context and mitigation intelligence</h3>
+          <p>Connect damage evidence with hazard context, mitigation priorities, and resilience planning for properties and critical infrastructure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="sec proc-sec">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Evidence Layer</span>
+        <h2>From geospatial data to review-ready action.</h2>
+      </div>
+      <div class="proc-steps">
+        <div class="proc-step rv d1">
+          <div class="proc-num">01</div>
+          <h4>Link world context</h4>
+          <p>Parcel records, hazard context, built-environment data, and pre-event imagery assembled for the target area.</p>
+        </div>
+        <div class="proc-step rv d2">
+          <div class="proc-num">02</div>
+          <h4>Compare multimodal evidence</h4>
+          <p>Street-view, satellite, drone, and field imagery across time — fused and aligned at the property level.</p>
+        </div>
+        <div class="proc-step rv d3">
+          <div class="proc-num">03</div>
+          <h4>Arbitrate model signals</h4>
+          <p>Damage scoring, multimodal reasoning, and confidence estimates via Ray's CLIP-enhanced arbitration layer.</p>
+        </div>
+        <div class="proc-step rv d4">
+          <div class="proc-num">04</div>
+          <h4>Export audit trail</h4>
+          <p>Action-ready evidence packages with scores, confidence, and imagery for downstream human review.</p>
         </div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main id="top">
-      <section class="hero" aria-label="Rayford AI overview">
-        <div class="hero-scene" aria-hidden="true">
-          <div class="storm-track"></div>
-          <div class="street street-one"></div>
-          <div class="street street-two"></div>
-          <div class="street street-three"></div>
-          <div class="parcel parcel-a" data-risk="high"></div>
-          <div class="parcel parcel-b" data-risk="medium"></div>
-          <div class="parcel parcel-c" data-risk="low"></div>
-          <div class="parcel parcel-d" data-risk="high"></div>
-          <div class="parcel parcel-e" data-risk="medium"></div>
-          <div class="scan-line"></div>
-          <div class="signal signal-a"></div>
-          <div class="signal signal-b"></div>
-          <div class="signal signal-c"></div>
-        </div>
+  <!-- ============ COMPETITIVE EDGE ============ -->
+  <section class="sec" id="edge">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Competitive Edge</span>
+        <h2>Not another imagery vendor or pre-event risk score.</h2>
+        <p>Rayford AI focuses on post-event decisions: what changed, how severe it is, what evidence supports the score, and what a human reviewer should inspect next.</p>
+      </div>
+      <div class="edge-grid">
+        <article class="edge-card rv d1">
+          <span class="edge-n">01</span>
+          <h3>Street-view plus remote sensing</h3>
+          <p>Imagery-only tools show pixels. Ray Assess compares ground and overhead evidence at the property level — a dual-sensor approach no pure satellite vendor offers.</p>
+        </article>
+        <article class="edge-card rv d2">
+          <span class="edge-n">02</span>
+          <h3>Built for disaster response</h3>
+          <p>Pre-event underwriting tools forecast risk. Ray packages post-event damage evidence for recovery decisions — different workflow, different timing, different customer.</p>
+        </article>
+        <article class="edge-card rv d3">
+          <span class="edge-n">03</span>
+          <h3>Research-backed audit trail</h3>
+          <p>Model arbitration, confidence, and paper-backed methods make output easier for public teams to review, defend, and submit to FEMA or insurers.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-content">
-          <p class="eyebrow" data-i18n="hero.eyebrow">Ray by Rayford AI</p>
-          <h1 data-i18n="hero.title">Every property, ready and recoverable.</h1>
-          <p class="hero-text" data-i18n="hero.text">
-            Ray turns local hazard history, post-disaster imagery, and property
-            records into auditable damage evidence for emergency managers,
-            local governments, and recovery teams.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#product" data-i18n="hero.primary">Explore Ray</a>
-            <a class="button primary" href="demo/" data-i18n="hero.demo">View Demo</a>
-            <a class="button secondary" href="#innovation" data-i18n="hero.secondary">Our Research</a>
-          </div>
-        </div>
-
-        <div class="hero-panel" aria-label="Ray Assess sample output">
-          <div class="panel-row">
-            <span>Ray Assess</span>
-            <strong data-i18n="panel.sample">Hurricane Milton sample</strong>
-          </div>
-          <div class="panel-metrics">
-            <div>
-              <span data-i18n="panel.damageScore">Damage score</span>
-              <strong>0.78</strong>
-            </div>
-            <div>
-              <span data-i18n="panel.confidence">Confidence</span>
-              <strong data-i18n="panel.high">High</strong>
-            </div>
-            <div>
-              <span data-i18n="panel.action">Action</span>
-              <strong data-i18n="panel.inspect">Inspect</strong>
+  <!-- ============ RESEARCH ============ -->
+  <section class="sec res-sec" id="technology">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Technology Stack</span>
+        <h2>A research-backed geospatial physical AI engine.</h2>
+        <p>Rayford AI translates peer-reviewed GeoAI research into a practical intelligence layer for physical-world perception, evidence, and action.</p>
+      </div>
+      <div class="paper-grid">
+        <article class="paper-card rv d1">
+          <div class="paper-img"><img src="assets/research/satellite-to-street.png" alt="Satellite-to-Street framework" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">IGARSS 2026 · Conference Paper</span>
+            <h4>Satellite-to-Street: Synthesizing Post-Disaster Views from Satellite Imagery</h4>
+            <p>Generating street-level disaster evidence from satellite context when field imagery is missing.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener">Paper ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/Sat2Street-DisasterGen" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
-          <p data-i18n="panel.body">
-            Roof edge deformation, debris pattern, and street-level evidence
-            indicate moderate structural damage.
-          </p>
-        </div>
-      </section>
-
-      <section class="section demo-video-band" id="demo-preview" aria-label="Ray Assess video demo">
-        <div class="demo-video-copy">
-          <p class="eyebrow" data-i18n="demoVideo.eyebrow">Interactive demo</p>
-          <h2 data-i18n="demoVideo.title">Watch remote and street evidence become a review-ready decision.</h2>
-          <p data-i18n="demoVideo.text">
-            Remote sensing gives disaster teams coverage at scale. Street-view
-            capture adds ground confirmation. Ray Assess turns both into a
-            damage score, evidence trail, confidence, and inspection guidance.
-          </p>
-          <div class="demo-video-actions">
-            <a class="button primary" href="demo/" data-i18n="demoVideo.primary">Open interactive demo</a>
-            <a class="button secondary" href="#customers" data-i18n="demoVideo.secondary">See who uses it</a>
-          </div>
-        </div>
-        <div class="demo-video-stage">
-          <div class="demo-video-frame">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              controls
-              poster="assets/demo/ray-assess-demo-poster.png"
-              aria-label="Ray Assess cross-view disaster assessment walkthrough"
-            >
-              <source src="assets/demo/ray-assess-demo-preview.webm" type="video/webm">
-              <a href="demo/">Open the Ray Assess demo</a>
-            </video>
-          </div>
-          <div class="demo-signal-strip" aria-label="Ray Assess demo highlights">
-            <div>
-              <span data-i18n="demoVideo.signalOne">Upstream</span>
-              <strong data-i18n="demoVideo.signalOneValue">Remote + street capture</strong>
-            </div>
-            <div>
-              <span data-i18n="demoVideo.signalTwo">Output</span>
-              <strong data-i18n="demoVideo.signalTwoValue">Property evidence packet</strong>
-            </div>
-            <div>
-              <span data-i18n="demoVideo.signalThree">Users</span>
-              <strong data-i18n="demoVideo.signalThreeValue">Emergency management, GIS, recovery teams</strong>
+        </article>
+        <article class="paper-card rv d2">
+          <div class="paper-img"><img src="assets/research/damagearbiter.png" alt="DamageArbiter framework" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">2026 · Preprint</span>
+            <h4>DamageArbiter: CLIP-Enhanced Multimodal Arbitration for Hurricane Damage Assessment</h4>
+            <p>The arbitration layer behind Ray's confidence, disagreement, and evidence-ranking design.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener">Paper ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/DamageArbiter" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
-        </div>
-      </section>
+        </article>
+        <article class="paper-card rv d3">
+          <div class="paper-img"><img src="assets/research/bi-temporal-streetview.png" alt="Bi-temporal assessment" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">Computers, Environment and Urban Systems · 2025</span>
+            <h4>Hyperlocal Disaster Damage Assessment Using Bi-temporal Street-view Imagery</h4>
+            <p>The journal foundation for pre/post street-view comparison at the property scale.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://www.sciencedirect.com/science/article/pii/S0198971525000882" target="_blank" rel="noopener">Paper ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/Bi-Temporal-StreetView" target="_blank" rel="noopener">GitHub ↗</a>
+              <a class="pl-a" href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener">Mosaic ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="paper-card rv d1">
+          <div class="paper-img"><img src="assets/research/disastervlp.png" alt="DisasterVLP" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">ICC 2025 · Best Student Paper</span>
+            <h4>DisasterVLP: Perceiving Multidimensional Disaster Damages via Visual-Language Models</h4>
+            <p>A visual-language foundation for reading multiple forms of disaster damage from street scenes.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener">Paper ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/DisasterVLP" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="paper-card rv d2">
+          <div class="paper-img"><img src="assets/research/geolocator.png" alt="GeoLocator" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">Applied Sciences · 2024</span>
+            <h4>GeoLocator: A Location-Integrated Large Multimodal Model for Geo-Privacy Inference</h4>
+            <p>Location-aware multimodal reasoning and geo-privacy at the foundational level.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener">Paper ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/GeoLocator" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="paper-card rv d3">
+          <div class="paper-img"><img src="assets/research/text-sam-tree-segmentation.png" alt="Text SAM segmentation" loading="lazy"></div>
+          <div class="paper-body">
+            <span class="paper-meta">Esri Press · Spatial AI Foundation</span>
+            <h4>Object Detection and Segmentation Using Text SAM in ArcGIS Online</h4>
+            <p>Applied geospatial computer vision workflows informing Rayford AI's product craft.</p>
+            <div class="paper-links">
+              <a class="pl-a" href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener">Book ↗</a>
+              <a class="pl-a" href="https://github.com/rayford295/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <section class="section intro-band" id="product">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="product.eyebrow">Start here</p>
-          <h2 data-i18n="product.title">Damage assessment and claims triage.</h2>
-          <p data-i18n="product.text">
-            Rayford AI starts with one urgent workflow: help human teams decide
-            which properties need attention first, and why.
-          </p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature">
-            <span class="feature-kicker">Ray Assess</span>
-            <h3 data-i18n="feature.assess.title">Property-level damage evidence</h3>
-            <p data-i18n="feature.assess.text">
-              Compare pre-event and post-event imagery, score visible damage,
-              attach evidence, and show confidence at the parcel level.
-            </p>
-          </article>
-          <article class="feature">
-            <span class="feature-kicker">Ray Claims</span>
-            <h3 data-i18n="feature.claims.title">Claims and inspection triage</h3>
-            <p data-i18n="feature.claims.text">
-              Rank properties for adjuster review and package imagery,
-              metadata, and explanations for faster claim workflows.
-            </p>
-          </article>
-          <article class="feature">
-            <span class="feature-kicker">Ray Risk</span>
-            <h3 data-i18n="feature.risk.title">Mitigation and grant support</h3>
-            <p data-i18n="feature.risk.text">
-              Connect damage evidence with local hazard history, mitigation
-              priorities, and FEMA-aligned recovery documentation.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section split" id="customers">
+  <!-- ============ CUSTOMERS ============ -->
+  <section class="sec cust-sec" id="customers">
+    <div class="wrap">
+      <div class="cust-layout">
         <div>
-          <p class="eyebrow" data-i18n="customers.eyebrow">Beachhead</p>
-          <h2 data-i18n="customers.title">Starting with emergency management teams that need property evidence fast.</h2>
-          <div class="pilot-card">
-            <span data-i18n="pilot.badge">2026 pilots</span>
-            <h3 data-i18n="pilot.title">Pilot pricing available.</h3>
-            <p data-i18n="pilot.text">
-              We are opening a small number of early pilots for historical event
-              validation and property-level assessment workflows.
-            </p>
-            <a href="mailto:contact@rayford-ai.com" data-i18n="pilot.action">Discuss a pilot</a>
+          <div class="sec-hd rv" style="margin-bottom:0">
+            <span class="eyebrow">Initial Wedge</span>
+            <h2>Starting with emergency management, expanding to physical-world intelligence.</h2>
+          </div>
+          <div style="margin-top:36px" class="rv">
+            <div class="pilot-card">
+              <span class="pilot-badge">2026 PILOTS OPEN</span>
+              <h3>Pilot pricing available.</h3>
+              <p>We are opening a small number of early pilots for historical-event validation and review-ready property assessment workflows.</p>
+              <a href="mailto:contact@rayford-ai.com">Discuss a pilot →</a>
+            </div>
           </div>
         </div>
-        <div class="customer-list">
-          <article>
-            <h3 data-i18n="customers.emergency.title">Emergency management offices</h3>
-            <p data-i18n="customers.emergency.text">
-              Prioritize preliminary damage assessment when a disaster creates
-              more properties than field teams can inspect immediately.
-            </p>
-          </article>
-          <article>
-            <h3 data-i18n="customers.governments.title">Local governments and GIS teams</h3>
-            <p data-i18n="customers.governments.text">
-              Convert street-level and aerial data into property-level damage
-              layers for preliminary assessment, recovery planning, and public
-              assistance workflows.
-            </p>
-          </article>
-          <article>
-            <h3 data-i18n="customers.insurers.title">Adjusters and insurance partners</h3>
-            <p data-i18n="customers.insurers.text">
-              Use the same evidence package for claims triage once the public
-              sector assessment workflow is validated.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section proof-band" id="validation">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="validation.eyebrow">Why now</p>
-          <h2 data-i18n="validation.title">Disaster losses are rising, but property evidence is still slow.</h2>
-        </div>
-        <div class="stat-grid">
-          <article class="stat-item">
-            <strong class="stat-number">27</strong>
-            <p class="stat-label" data-i18n="proof.noaaCount">U.S. billion-dollar weather and climate disasters in 2024.</p>
-            <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener noreferrer">NOAA ↗</a></cite>
-          </article>
-          <article class="stat-item">
-            <strong class="stat-number">$182.7B</strong>
-            <p class="stat-label" data-i18n="proof.noaaDamage">Estimated U.S. damage from 2024 billion-dollar disasters.</p>
-            <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener noreferrer">NOAA ↗</a></cite>
-          </article>
-          <article class="stat-item">
-            <strong class="stat-number">$137B</strong>
-            <p class="stat-label" data-i18n="proof.swissRe">Global insured natural catastrophe losses reported for 2024.</p>
-            <cite><a href="https://www.swissre.com/institute/research/sigma-research/sigma-2025-01-natural-catastrophes-trend.html" target="_blank" rel="noopener noreferrer">Swiss Re ↗</a></cite>
-          </article>
-        </div>
-        <div class="proof-grid proof-feature-grid">
-          <article class="proof-card proof-feature">
-            <span>Mosaic</span>
-            <strong data-i18n="proof.featured">Featured</strong>
-            <p data-i18n="proof.mosaic">
-              Industry coverage of Yifan Yang and Dr. Lei Zou's Texas A&M
-              Hurricane Milton street-view damage assessment research.
-            </p>
-          </article>
-        </div>
-        <div class="source-row">
-          <a href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener noreferrer" data-i18n="source.mosaic">Mosaic feature ↗</a>
-          <a href="https://www.fema.gov/hr/node/619903" target="_blank" rel="noopener noreferrer" data-i18n="source.fema">FEMA PDA process ↗</a>
-        </div>
-      </section>
-
-      <section class="section competitive-band" id="edge">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="edge.eyebrow">Competitive edge</p>
-          <h2 data-i18n="edge.title">Not another imagery vendor or pre-event risk score.</h2>
-          <p data-i18n="edge.text">
-            Rayford AI focuses on post-event decisions: what changed, how severe
-            it is, what evidence supports the score, and what a human reviewer
-            should inspect next.
-          </p>
-        </div>
-        <div class="edge-grid">
-          <article>
-            <span>01</span>
-            <h3 data-i18n="edge.one.title">Street-view plus remote sensing</h3>
-            <p data-i18n="edge.one.text">
-              Imagery-only tools show pixels. Ray Assess compares ground and
-              overhead evidence at the property level.
-            </p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3 data-i18n="edge.two.title">Built for disaster response</h3>
-            <p data-i18n="edge.two.text">
-              Pre-event underwriting tools forecast risk. Ray packages
-              post-event damage evidence for recovery decisions.
-            </p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3 data-i18n="edge.three.title">Research-backed audit trail</h3>
-            <p data-i18n="edge.three.text">
-              Model arbitration, confidence, and paper-backed methods make the
-              output easier for public teams to review and defend.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section innovation-band" id="innovation">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="innovation.eyebrow">Innovation</p>
-          <h2 data-i18n="innovation.title">A research-backed engine for property-level resilience.</h2>
-          <p data-i18n="innovation.text">
-            Rayford AI translates peer-reviewed disaster GeoAI research into a
-            practical evidence layer for damage assessment, claims triage, and
-            long-term resilience planning.
-          </p>
-        </div>
-
-        <div class="innovation-layout">
-          <article class="innovation-manifesto">
-            <img src="assets/brand/official/rayford-logo-github.png" alt="" aria-hidden="true">
-            <p class="eyebrow">Ray</p>
-            <h3 data-i18n="innovation.manifesto.title">From hazard data to trusted recovery decisions.</h3>
-            <p data-i18n="innovation.manifesto.text">
-              Ray is designed to read a property across time: what hazards it
-              has faced, what changed after an event, what evidence supports
-              the model's judgment, and what a human reviewer should do next.
-            </p>
-          </article>
-
-          <div class="innovation-pillars" aria-label="Rayford AI innovation pillars">
-            <article>
-              <span>01</span>
-              <h3 data-i18n="innovation.pillar.one.title">Multimodal damage evidence</h3>
-              <p data-i18n="innovation.pillar.one.text">
-                Fuse street-view, satellite, parcel, and local hazard context
-                so property damage is assessed with more than one sensor.
-              </p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3 data-i18n="innovation.pillar.two.title">Generative missing-view recovery</h3>
-              <p data-i18n="innovation.pillar.two.text">
-                Explore satellite-to-street synthesis when post-disaster ground
-                views are delayed, incomplete, or unsafe to collect.
-              </p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3 data-i18n="innovation.pillar.three.title">Model arbitration and audit trails</h3>
-              <p data-i18n="innovation.pillar.three.text">
-                Compare model signals, expose confidence, and preserve
-                property-level evidence for human review.
-              </p>
-            </article>
+        <div class="cust-list rv">
+          <div class="cust-item">
+            <h3>Emergency management offices</h3>
+            <p>Prioritize preliminary damage assessment when a disaster creates more properties than field teams can inspect. Ray Assess provides ranked, evidence-backed triage.</p>
+          </div>
+          <div class="cust-item">
+            <h3>Local governments, GIS, and infrastructure teams</h3>
+            <p>Convert street-level and aerial data into auditable property and asset layers for assessment, resilience planning, and operational review after major events.</p>
+          </div>
+          <div class="cust-item">
+            <h3>Adjusters and insurance partners</h3>
+            <p>Use the same evidence package for claims triage once the public-sector workflow is validated — shared evidence, faster review, defensible output.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="research-foundation" aria-label="Research foundation">
-          <div class="research-heading">
-            <p class="eyebrow" data-i18n="research.eyebrow">Research foundation</p>
-            <h3 data-i18n="research.title">Papers behind Rayford AI.</h3>
-            <p data-i18n="research.text">
-              The company starts from Yifan Yang's research track in street-view
-              disaster assessment, visual-language models, generative GeoAI,
-              and spatial intelligence.
-            </p>
-          </div>
-
-          <div class="paper-grid">
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/satellite-to-street.png" alt="Satellite-to-Street research framework" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.sat2street.meta">IGARSS 2026 · Conference Paper</span>
-                <h4>Satellite-to-Street: Synthesizing Post-Disaster Views from Satellite Imagery via Generative Vision Models</h4>
-                <p data-i18n="paper.sat2street.text">
-                  A path toward generating street-level disaster evidence from
-                  satellite context when field imagery is missing.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener noreferrer">Paper ↗</a>
-                  <a href="https://github.com/rayford295/Sat2Street-DisasterGen" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/damagearbiter.png" alt="DamageArbiter research framework" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.damagearbiter.meta">2026 · Preprint</span>
-                <h4>DamageArbiter: A CLIP-Enhanced Multimodal Arbitration Framework for Hurricane Damage Assessment from Street-View Imagery</h4>
-                <p data-i18n="paper.damagearbiter.text">
-                  The arbitration layer that inspires Ray's confidence,
-                  disagreement, and evidence-ranking design.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener noreferrer">Paper ↗</a>
-                  <a href="https://github.com/rayford295/DamageArbiter" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/bi-temporal-streetview.png" alt="Bi-temporal street-view disaster damage assessment framework" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.hyperlocal.meta">Computers, Environment and Urban Systems · 2025</span>
-                <h4>Hyperlocal Disaster Damage Assessment Using Bi-temporal Street-view Imagery and Pre-trained Vision Models</h4>
-                <p data-i18n="paper.hyperlocal.text">
-                  The journal foundation for comparing pre-event and post-event
-                  street-view imagery at a hyperlocal scale.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://www.sciencedirect.com/science/article/pii/S0198971525000882" target="_blank" rel="noopener noreferrer">Paper ↗</a>
-                  <a href="https://doi.org/10.1016/j.compenvurbsys.2025.102335" target="_blank" rel="noopener noreferrer">DOI ↗</a>
-                  <a href="https://github.com/rayford295/Bi-Temporal-StreetView" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                  <a href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener noreferrer">Mosaic ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/disastervlp.png" alt="DisasterVLP research framework" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.disastervlp.meta">ICC 2025 · Best Student Paper</span>
-                <h4>Perceiving Multidimensional Disaster Damages from Street-View Images Using Visual-Language Models</h4>
-                <p data-i18n="paper.disastervlp.text">
-                  A visual-language foundation for reading multiple forms of
-                  disaster damage from street-level scenes.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener noreferrer">Paper ↗</a>
-                  <a href="https://github.com/rayford295/DisasterVLP" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/geolocator.png" alt="GeoLocator research framework" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.geolocator.meta">Applied Sciences · 2024</span>
-                <h4>GeoLocator: A Location-Integrated Large Multimodal Model (LMM) for Inferring Geo-Privacy</h4>
-                <p data-i18n="paper.geolocator.text">
-                  Related spatial intelligence work on location-aware multimodal
-                  reasoning and geo-privacy.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener noreferrer">Paper ↗</a>
-                  <a href="https://doi.org/10.3390/app14167091" target="_blank" rel="noopener noreferrer">DOI ↗</a>
-                  <a href="https://github.com/rayford295/GeoLocator" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="paper-card">
-              <figure class="paper-figure">
-                <img src="assets/research/text-sam-tree-segmentation.png" alt="Text SAM tree segmentation workflow" loading="lazy">
-              </figure>
-              <div class="paper-body">
-                <span class="paper-meta" data-i18n="paper.spatial.meta">Broader spatial AI foundation</span>
-                <h4>Object detection and segmentation of trees using Text SAM in ArcGIS Online</h4>
-                <p data-i18n="paper.spatial.text">
-                  Esri Press book chapter showing applied geospatial computer
-                  vision workflows that inform Rayford AI's product craft.
-                </p>
-                <div class="paper-actions">
-                  <a href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener noreferrer">Book ↗</a>
-                  <a href="https://github.com/rayford295/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-              </div>
-            </article>
-          </div>
+  <!-- ============ MARKET ============ -->
+  <section class="sec" id="validation">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Market Timing</span>
+        <h2>Physical-world risk is rising. Evidence workflows are still slow.</h2>
+      </div>
+      <div class="mkt-grid">
+        <div class="mkt-card rv d1">
+          <strong>27</strong>
+          <p>U.S. billion-dollar weather and climate disasters in 2024 — the physical world is changing faster than assessment infrastructure can keep pace.</p>
+          <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener">NOAA ↗</a></cite>
         </div>
-      </section>
-
-      <section class="section method-section">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="method.eyebrow">Evidence layer</p>
-          <h2 data-i18n="method.title">From imagery to review-ready decisions.</h2>
+        <div class="mkt-card rv d2">
+          <strong>$182.7B</strong>
+          <p>Estimated U.S. damage from 2024 billion-dollar disasters — a market where faster evidence means faster recovery and lower total cost.</p>
+          <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener">NOAA ↗</a></cite>
         </div>
-        <ol class="method-flow">
-          <li>
-            <span>01</span>
-            <h3 data-i18n="method.one.title">Link property context</h3>
-            <p data-i18n="method.one.text">Parcel records, local hazard history, and pre-event imagery.</p>
-          </li>
-          <li>
-            <span>02</span>
-            <h3 data-i18n="method.two.title">Compare post-event evidence</h3>
-            <p data-i18n="method.two.text">Street-view, satellite, drone, and field imagery where available.</p>
-          </li>
-          <li>
-            <span>03</span>
-            <h3 data-i18n="method.three.title">Arbitrate model signals</h3>
-            <p data-i18n="method.three.text">Damage scoring, multimodal reasoning, and confidence estimates.</p>
-          </li>
-          <li>
-            <span>04</span>
-            <h3 data-i18n="method.four.title">Export audit trail</h3>
-            <p data-i18n="method.four.text">Property-level evidence packages for human review.</p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section team-band" id="team">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="team.eyebrow">Team</p>
-          <h2 data-i18n="team.title">Built from disaster GeoAI research with technical mentorship.</h2>
+        <div class="mkt-card rv d3">
+          <strong>$137B</strong>
+          <p>Global insured natural catastrophe losses reported for 2024 — growing year over year with no slowdown in underlying physical risk.</p>
+          <cite><a href="https://www.swissre.com/institute/research/sigma-research/sigma-2025-01-natural-catastrophes-trend.html" target="_blank" rel="noopener">Swiss Re ↗</a></cite>
         </div>
-        <div class="feature-grid team-grid">
-          <article class="feature team-card">
-            <div class="team-card-header">
-              <img class="team-avatar" src="assets/team/yifan-yang.png" alt="Yifan Yang">
-              <div>
-                <span class="feature-kicker" data-i18n="team.yifan.role">Founder</span>
-                <h3>Yifan Yang</h3>
-              </div>
-            </div>
-            <p data-i18n="team.yifan.text">
-              Technical lead for Ray, focused on street-view disaster
-              assessment, visual-language models, multimodal arbitration, and
-              autonomous GeoAI.
-            </p>
-            <a class="team-link" href="https://www.linkedin.com/in/yifan-yang-14a898186/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
-          </article>
-          <article class="feature team-card">
-            <div class="team-card-header">
-              <img class="team-avatar" src="assets/team/lei-zou.jpeg" alt="Dr. Lei Zou">
-              <div>
-                <span class="feature-kicker" data-i18n="team.zou.role">Scientific and technical advisor</span>
-                <h3>Dr. Lei Zou</h3>
-              </div>
-            </div>
-            <p data-i18n="team.zou.text">
-              Advisor for the GeoAI and disaster resilience foundation behind
-              Rayford AI's research-to-venture path.
-            </p>
-            <a class="team-link" href="https://www.linkedin.com/in/leizou/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
-          </article>
-          <article class="feature team-card">
-            <div class="team-card-header">
-              <img class="team-avatar" src="assets/team/zhengzhong-tu.jpeg" alt="Dr. Zhengzhong Tu">
-              <div>
-                <span class="feature-kicker" data-i18n="team.tu.role">Technical advisor</span>
-                <h3>Dr. Zhengzhong Tu</h3>
-              </div>
-            </div>
-            <p data-i18n="team.tu.text">
-              Committee advisor supporting computer vision, multimodal model
-              design, and validation strategy for Ray's disaster assessment
-              engine.
-            </p>
-            <a class="team-link" href="https://www.linkedin.com/in/zhengzhongtu/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
-          </article>
-          <article class="feature team-card">
-            <div class="team-card-header">
-              <img class="team-avatar" src="assets/team/heng-cai.jpeg" alt="Dr. Heng Cai">
-              <div>
-                <span class="feature-kicker" data-i18n="team.cai.role">Technical advisor</span>
-                <h3>Dr. Heng Cai</h3>
-              </div>
-            </div>
-            <p data-i18n="team.cai.text">
-              Committee advisor supporting built environment context,
-              infrastructure resilience, and product-risk review for
-              property-level recovery decisions.
-            </p>
-            <a class="team-link" href="https://www.linkedin.com/in/heng-cai-44b90a85/" target="_blank" rel="noopener noreferrer" data-i18n="team.linkedin">LinkedIn Profile ↗</a>
-          </article>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="section roadmap-band" id="roadmap">
-        <div class="section-heading">
-          <p class="eyebrow" data-i18n="roadmap.eyebrow">2026 Roadmap</p>
-          <h2 data-i18n="roadmap.title">Ten weeks from research prototype to pilot-ready demo.</h2>
-        </div>
-        <ol class="timeline">
-          <li data-status="active">
-            <span class="milestone-status" data-i18n="status.active">In progress</span>
-            <span>01</span>
-            <p data-i18n="roadmap.one">Complete 40 customer discovery interviews.</p>
-          </li>
-          <li data-status="active">
-            <span class="milestone-status" data-i18n="status.active">In progress</span>
-            <span>02</span>
-            <p data-i18n="roadmap.two">Build a Ray Assess demo for a historical disaster event.</p>
-          </li>
-          <li data-status="planned">
-            <span class="milestone-status" data-i18n="status.planned">Planned</span>
-            <span>03</span>
-            <p data-i18n="roadmap.three">Create two property-level validation case studies.</p>
-          </li>
-          <li data-status="planned">
-            <span class="milestone-status" data-i18n="status.planned">Planned</span>
-            <span>04</span>
-            <p data-i18n="roadmap.four">Secure three serious pilot or LOI conversations.</p>
-          </li>
-        </ol>
-      </section>
+  <!-- ============ TEAM ============ -->
+  <section class="sec" id="team" style="border-top:1px solid var(--border)">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Team</span>
+        <h2>Built from GeoAI research for physical-world intelligence.</h2>
+      </div>
+      <div class="team-grid">
+        <article class="team-card rv d1">
+          <div class="team-av"><img src="assets/team/yifan-yang.png" alt="Yifan Yang"></div>
+          <span class="team-role">Founder &amp; Technical Lead</span>
+          <h3>Yifan Yang</h3>
+          <p>Technical lead for Ray, focused on multimodal spatial intelligence, street-view analysis, model arbitration, and autonomous GeoAI systems.</p>
+          <a class="team-lnk" href="https://www.linkedin.com/in/yifan-yang-14a898186/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </article>
+        <article class="team-card rv d2">
+          <div class="team-av"><img src="assets/team/lei-zou.jpeg" alt="Dr. Lei Zou"></div>
+          <span class="team-role">Scientific &amp; Technical Advisor</span>
+          <h3>Dr. Lei Zou</h3>
+          <p>Advisor for the GeoAI and spatial-intelligence foundation behind Rayford AI's research-to-venture path and disaster resilience direction.</p>
+          <a class="team-lnk" href="https://www.linkedin.com/in/leizou/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </article>
+        <article class="team-card rv d3">
+          <div class="team-av"><img src="assets/team/zhengzhong-tu.jpeg" alt="Dr. Zhengzhong Tu"></div>
+          <span class="team-role">Technical Advisor</span>
+          <h3>Dr. Zhengzhong Tu</h3>
+          <p>Committee advisor for computer vision, multimodal model design, and validation strategy for Ray's geospatial physical AI engine.</p>
+          <a class="team-lnk" href="https://www.linkedin.com/in/zhengzhongtu/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </article>
+        <article class="team-card rv d4">
+          <div class="team-av"><img src="assets/team/heng-cai.jpeg" alt="Dr. Heng Cai"></div>
+          <span class="team-role">Technical Advisor</span>
+          <h3>Dr. Heng Cai</h3>
+          <p>Committee advisor for built environment context, infrastructure intelligence, and product-risk review for real-world decision workflows.</p>
+          <a class="team-lnk" href="https://www.linkedin.com/in/heng-cai-44b90a85/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <section class="closing">
-        <p class="eyebrow">Rayford AI</p>
-        <h2 data-i18n="closing.title">The resilience AI for every property.</h2>
-        <p class="closing-sub" data-i18n="closing.sub">
-          We are scheduling customer discovery and pilot conversations with
-          emergency management, local government, GIS, and recovery teams.
-        </p>
-        <div class="closing-actions">
-          <a class="button primary" href="mailto:contact@rayford-ai.com" data-i18n="closing.contact">Discuss a Pilot</a>
-          <a class="button secondary" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="closing.research">Research Origin ↗</a>
-        </div>
-      </section>
-    </main>
+  <!-- ============ ROADMAP ============ -->
+  <section class="sec road-sec" id="roadmap">
+    <div class="wrap">
+      <div class="sec-hd rv">
+        <span class="eyebrow">Execution Plan · AggieX 2026</span>
+        <h2>From research assets to a pilot-ready geospatial physical AI wedge.</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl-item rv d1" data-s="active">
+          <div class="tl-dot">01</div>
+          <span class="tl-status">In Progress</span>
+          <p>Complete 40 customer discovery interviews across emergency management, GIS, insurers, adjusters, resilience teams, and recovery consultants.</p>
+        </li>
+        <li class="tl-item rv d2" data-s="active">
+          <div class="tl-dot">02</div>
+          <span class="tl-status">In Progress</span>
+          <p>Build a working Ray Assess demo for property-level and evidence-driven triage on a historical event.</p>
+        </li>
+        <li class="tl-item rv d3" data-s="planned">
+          <div class="tl-dot">03</div>
+          <span class="tl-status">Planned</span>
+          <p>Create two validation case studies showing before-and-after imagery, evidence, confidence, and workflow relevance.</p>
+        </li>
+        <li class="tl-item rv d4" data-s="planned">
+          <div class="tl-dot">04</div>
+          <span class="tl-status">Planned</span>
+          <p>Secure 3 pilot or letter-of-intent conversations with serious target customers by Demo Day, August 7, 2026.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <p data-i18n="footer.text">Rayford AI builds Ray, the property-level resilience intelligence platform.</p>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="mailto:contact@rayford-ai.com" data-i18n="footer.contact">contact@rayford-ai.com</a>
-        <a href="https://github.com/Rayford-AI/rayford-ai" target="_blank" rel="noopener noreferrer" data-i18n="footer.repo">GitHub ↗</a>
-        <a href="https://www.linkedin.com/company/rayford-ai" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkedin">LinkedIn ↗</a>
-        <a href="privacy.html" data-i18n="footer.privacyLink">Privacy</a>
-      </nav>
-      <p class="footer-copy">© 2026 Rayford AI</p>
-      <p class="footer-privacy" data-i18n="footer.privacy">
-        Pilot property imagery is handled only for assessment and validation work under agreed data terms.
-      </p>
-    </footer>
-  </body>
+  <!-- ============ CTA ============ -->
+  <section class="cta-sec">
+    <span class="eyebrow">Rayford AI</span>
+    <h2>A technology company for the physical world.</h2>
+    <p>We are scheduling customer discovery and pilot conversations with emergency management, GIS, insurance, resilience, and infrastructure teams.</p>
+    <div class="cta-actions">
+      <a class="btn-p" href="mailto:contact@rayford-ai.com">Discuss a Pilot →</a>
+      <a class="btn-s" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener">Research Origin ↗</a>
+      <a class="btn-s" href="demo/">View Demo</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="nav-brand">
+        <img class="nav-logo" src="assets/brand/official/rayford-logo-github.png" alt="">
+        <span class="nav-wordmark">Rayford AI</span>
+      </div>
+      <p>Rayford AI builds Ray, a geospatial physical AI system for auditable property and infrastructure intelligence.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer links">
+      <a href="mailto:contact@rayford-ai.com">contact@rayford-ai.com</a>
+      <a href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/company/rayford-ai" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <span class="foot-copy">© 2026 Rayford AI</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('on')),
+    { threshold: .1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+
+  // Mobile nav
+  const ham = document.querySelector('.ham');
+  const nav = document.getElementById('primary-nav');
+  ham?.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    ham.setAttribute('aria-expanded', open);
+  });
+
+  // Language switcher — wire up existing site.js i18n if present
+  document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lang-toggle]').forEach(b => b.setAttribute('aria-pressed','false'));
+      btn.setAttribute('aria-pressed','true');
+      document.body.dataset.lang = btn.dataset.langToggle;
+    });
+  });
+</script>
+
+<!-- Preserve existing i18n / site logic -->
+<script src="assets/site.js" defer></script>
+</body>
 </html>
