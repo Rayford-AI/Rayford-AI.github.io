@@ -1,0 +1,10 @@
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark navy background -->
+  <rect width="60" height="60" rx="10" fill="#0D1E35"/>
+  <!-- R letterform: stem up → top bar → bowl curve → crossbar back → leg -->
+  <path d="M 17,49 L 17,11 L 33,11 Q 45,11 45,22 Q 45,32 33,32 L 17,32 M 28,32 L 44,49"
+        stroke="white" stroke-width="7" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cyan scan line at bowl/leg junction -->
+  <line x1="5" y1="32" x2="55" y2="32" stroke="#00CCEE" stroke-width="1.5" opacity="0.85"/>
+</svg>
