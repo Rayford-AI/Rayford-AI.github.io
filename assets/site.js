@@ -2,9 +2,9 @@
   const storageKey = "rayford-language";
   const translations = {
     en: {
-      "meta.title": "Rayford AI | Property-Level Resilience Intelligence",
+      "meta.title": "Rayford AI | Geospatial Physical AI",
       "meta.description":
-        "Rayford AI builds Ray Assess, a property-level disaster damage assessment AI for local governments, emergency managers, and recovery teams.",
+        "Rayford AI builds geospatial physical AI for auditable property and infrastructure intelligence across disaster, resilience, and real-world operations.",
       "nav.product": "Product",
       "nav.customers": "Customers",
       "nav.validation": "Validation",
@@ -194,9 +194,9 @@
         "Pilot property imagery is handled only for assessment and validation work under agreed data terms."
     },
     zh: {
-      "meta.title": "Rayford AI | 面向房产的灾害韧性智能",
+      "meta.title": "Rayford AI | 地理空间物理 AI",
       "meta.description":
-        "Rayford AI 打造 Ray Assess，一个服务地方政府、应急管理与恢复团队的房产级灾害损伤评估 AI。",
+        "Rayford AI 构建地理空间物理 AI，为灾害、韧性与真实世界运营中的房产和基础设施决策提供可审计智能。",
       "nav.product": "产品",
       "nav.customers": "客户",
       "nav.validation": "验证",
