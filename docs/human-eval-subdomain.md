@@ -19,9 +19,10 @@ Hostname: human-eval.rayford-ai.com
 Service:  http://149.165.159.154:8890
 ```
 
-This route is live through a `cloudflared` LaunchAgent on Yifan's Mac. For a
-durable production setup, install and run `cloudflared` on the server that hosts
-the Express app, then change the tunnel service to:
+The temporary `cloudflared` LaunchAgent on Yifan's Mac has been removed after
+confirming the public endpoint still returns `200`. The durable connector should
+run on the server that hosts the Express app. If the app is reachable from that
+server at `127.0.0.1:8890`, set the tunnel service to:
 
 ```text
 Hostname: human-eval.rayford-ai.com
