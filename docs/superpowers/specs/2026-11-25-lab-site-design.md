@@ -152,3 +152,6 @@ taken from the logo, Newsreader (display) with Geist and Geist Mono, black pill
 buttons, borderless image-led project cards, and no grain, cursor glow or card
 tilt. The hero map keeps its animation, redrawn as dark dots with maroon events.
 Advisors now carry their Chinese names (邹雷, 涂正中, 蔡恒).
+
+People, same day: the advisors are listed as the Ph.D. committee (博士委员会), and
+Dr. Andrew Klein (Texas A&M Geography) joins them; the grid fits five in one row.
