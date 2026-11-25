@@ -143,3 +143,12 @@ A small script (`scripts/sync-forks.sh` in the website repo) that runs
 
 Exact fonts and spacing, card copy (drawn from each repo's README and paper),
 thumbnail crops, mobile layout (16px gutters, no horizontal scroll).
+
+## Revision: Light Theme (2026-11-25)
+
+The user asked for a white background with a "frontier lab" feel, keeping all
+content. The page now uses a white base with near-black type, one maroon accent
+taken from the logo, Newsreader (display) with Geist and Geist Mono, black pill
+buttons, borderless image-led project cards, and no grain, cursor glow or card
+tilt. The hero map keeps its animation, redrawn as dark dots with maroon events.
+Advisors now carry their Chinese names (邹雷, 涂正中, 蔡恒).
