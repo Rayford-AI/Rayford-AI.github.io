@@ -3,1298 +3,794 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rayford AI builds geospatial physical AI for auditable property and infrastructure intelligence across disaster, resilience, and real-world operations.">
+  <title>Rayford AI Lab</title>
+  <meta name="description" content="Rayford AI Lab builds geospatial AI for disaster resilience: satellite, street-view and drone imagery read by models that show their evidence. Live demos, papers and code.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rayford-ai.com">
-  <meta property="og:title" content="Rayford AI | Geospatial Physical AI">
-  <meta property="og:description" content="Ray turns remote sensing, street-level imagery, and geospatial context into auditable intelligence for disaster, infrastructure, and property decisions.">
+  <meta property="og:title" content="Rayford AI Lab">
+  <meta property="og:description" content="Geospatial AI for disaster resilience. Live demos, papers and open code.">
   <meta property="og:image" content="https://rayford-ai.com/assets/brand/og-image.png">
+  <meta name="theme-color" content="#0b0807">
   <link rel="canonical" href="https://rayford-ai.com">
-  <title>Rayford AI | Geospatial Physical AI</title>
-  <link rel="icon" href="assets/brand/logo-mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/lab-mark.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/brand/official/rayford-logo-github.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
   <script defer data-domain="rayford-ai.com" src="https://plausible.io/js/script.js"></script>
+  <script>
+    try { if (localStorage.getItem('rayford-language') === 'zh') document.documentElement.classList.add('zh'); } catch (e) {}
+  </script>
   <style>
-    /* =============================================
-       TOKENS
-    ============================================= */
     :root {
-      --bg:          #080D18;
-      --bg2:         #0C1220;
-      --card:        #101828;
-      --card-hover:  #141F30;
-      --border:      #1C2B42;
-      --border-hi:   #28405E;
-      --text:        #C8D8EA;
-      --muted:       #637D96;
-      --dim:         #3E5870;
-      --white:       #EAF2FF;
-      --cyan:        #00CCEE;
-      --cyan-dim:    rgba(0,204,238,.10);
-      --cyan-glow:   rgba(0,204,238,.22);
-      --orange:      #FF6030;
-      --orange-dim:  rgba(255,96,48,.10);
-      --green:       #1FD46A;
-      --green-dim:   rgba(31,212,106,.08);
-      --amber:       #F5A623;
-      --shadow:      0 24px 80px rgba(0,0,0,.55);
+      --bg: #0b0807;
+      --bg2: #110c0a;
+      --card: #16100e;
+      --card2: #1d1512;
+      --line: rgba(255, 214, 160, .09);
+      --line-hi: rgba(255, 196, 110, .28);
+      --text: #ecdfd2;
+      --muted: #a8968a;
+      --dim: #7a6a60;
+      --gold: #f2b33d;
+      --gold-hi: #ffd88a;
+      --gold-glow: rgba(242, 179, 61, .28);
+      --maroon: #7c1c1c;
+      --display: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+      --sans: 'Hanken Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --gutter: clamp(16px, 4vw, 64px);
+      --max: 1240px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 74px; font-size: 16px; }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Barlow', sans-serif;
+      font-family: var(--sans);
+      font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
-    /* grain overlay */
-    body::after {
-      content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 999;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
-      opacity: .5;
-    }
-
+    html.zh body { line-height: 1.75; }
+    html:not(.zh) .zh, html.zh .en { display: none !important; }
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    h1,h2,h3,h4 { font-family: 'Barlow Semi Condensed', sans-serif; letter-spacing: 0.01em; }
+    img, video { display: block; max-width: 100%; }
+    ::selection { background: var(--gold); color: #1a0f08; }
+    :focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
 
-    /* =============================================
-       TYPOGRAPHY HELPERS
-    ============================================= */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .glow-cursor {
+      position: fixed; left: 0; top: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px;
+      border-radius: 50%; pointer-events: none; z-index: 0;
+      background: radial-gradient(circle, rgba(242,179,61,.07), transparent 65%);
+      transition: opacity .4s; opacity: 0;
+    }
+
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); position: relative; z-index: 1; }
     .eyebrow {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .68rem;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--cyan);
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); display: inline-flex; align-items: center; gap: 10px;
     }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: currentColor; opacity: .6; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 500; color: #fff6ec; letter-spacing: -.01em; }
+    h2 { font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.08; margin: 14px 0 18px; }
+    h2 em, h1 em { font-style: italic; color: var(--gold-hi); font-weight: 400; }
+    html.zh h2 em, html.zh h1 em { font-style: normal; }
+    .lede { color: var(--muted); max-width: 640px; font-size: 1.06rem; }
+    section { position: relative; padding: clamp(80px, 11vw, 140px) 0; }
 
-    /* =============================================
-       LAYOUT
-    ============================================= */
-    .wrap {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 72px);
-    }
-
-    .sec { padding: clamp(72px, 10vw, 128px) 0; }
-
-    .sec-hd {
-      max-width: 660px;
-      margin-bottom: clamp(40px, 6vw, 72px);
-    }
-    .sec-hd h2 {
-      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.14;
-      color: var(--white);
-      margin-top: 12px;
-    }
-    .sec-hd p {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.7;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-
-    /* =============================================
-       REVEAL ANIMATION
-    ============================================= */
-    .rv {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .rv.on { opacity: 1; transform: none; }
-    .rv.d1 { transition-delay: .08s; }
-    .rv.d2 { transition-delay: .16s; }
-    .rv.d3 { transition-delay: .24s; }
-    .rv.d4 { transition-delay: .32s; }
-
-    /* =============================================
-       NAV
-    ============================================= */
+    /* header */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
-      height: 72px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(20px, 5vw, 56px);
-      background: rgba(8,13,24,.9);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(18px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 14px var(--gutter); transition: background .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
     }
+    .nav.scrolled { background: rgba(11,8,7,.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.15rem; color: #fff6ec; white-space: nowrap; }
+    .brand img { width: 30px; height: 30px; }
+    .brand b { font-weight: 600; }
+    .brand i { color: var(--gold); font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 26px; font-size: .9rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--gold-hi); }
+    .lang {
+      font-family: var(--mono); font-size: .75rem; border: 1px solid var(--line-hi); border-radius: 999px;
+      padding: 5px 12px; color: var(--gold); background: transparent; cursor: pointer;
+    }
+    .lang:hover { background: var(--gold); color: #1a0f08; }
+    @media (max-width: 820px) { .nav-links a:not(.keep) { display: none; } .nav-links { gap: 14px; } }
 
-    .nav-brand {
-      display: flex; align-items: center; gap: 11px;
+    /* hero */
+    .hero { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 120px 0 80px; overflow: hidden; }
+    #map { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 60% at 18% 55%, rgba(11,8,7,.9), rgba(11,8,7,.2) 70%, transparent),
+                  linear-gradient(to bottom, transparent 70%, var(--bg));
     }
-    .nav-logo {
-      width: 34px; height: 34px; border-radius: 7px;
-      flex-shrink: 0;
+    .hero .wrap { z-index: 2; }
+    .hero h1 { font-size: clamp(2.8rem, 8vw, 6.6rem); line-height: .98; margin: 22px 0 26px; max-width: 900px; font-weight: 400; }
+    html.zh .hero h1 { line-height: 1.15; font-weight: 700; }
+    .hero .lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); max-width: 600px; color: #c8b8aa; }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px;
+      font-weight: 600; font-size: .95rem; transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
     }
-    .nav-wordmark { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); }
-    .nav-sub {
-      font-family: 'IBM Plex Mono', monospace; font-size: .55rem;
-      color: var(--cyan); opacity: .7; display: block; line-height: 1; margin-top: 2px;
-      letter-spacing: .1em;
+    .btn-gold { background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: #1a0f08; box-shadow: 0 10px 40px var(--gold-glow); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 16px 56px rgba(242,179,61,.45); }
+    .btn-ghost { border: 1px solid var(--line-hi); color: var(--text); background: rgba(255,255,255,.02); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold-hi); }
+    .stats { display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 64px); margin-top: 64px; }
+    .stat b { display: block; font-family: var(--display); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 400; color: #fff6ec; line-height: 1; }
+    .stat span { font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .hud {
+      position: absolute; right: var(--gutter); bottom: 40px; z-index: 2; font-family: var(--mono); font-size: .68rem;
+      color: var(--dim); text-align: right; line-height: 1.8; letter-spacing: .08em;
     }
+    .hud b { color: var(--gold); font-weight: 500; }
+    @media (max-width: 820px) { .hud { display: none; } #map { opacity: .55; } }
 
-    .nav-links {
-      display: flex; align-items: center; gap: 4px; list-style: none;
-    }
-    .nav-links a {
-      font-size: .83rem; font-weight: 500; color: var(--muted);
-      padding: 6px 11px; border-radius: 6px;
-      transition: color .18s, background .18s;
-    }
-    .nav-links a:hover { color: var(--white); background: var(--card); }
+    /* marquee */
+    .marquee { border-block: 1px solid var(--line); overflow: hidden; padding: 18px 0; background: var(--bg2); position: relative; z-index: 1; }
+    .marquee-track { display: flex; gap: 56px; width: max-content; animation: scroll 46s linear infinite; }
+    .marquee-track span { font-family: var(--display); font-style: italic; font-size: 1.25rem; color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 56px; }
+    .marquee-track span::after { content: '✦'; font-style: normal; color: var(--gold); font-size: .8rem; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
 
-    .btn-nav {
-      font-size: .82rem !important;
-      font-weight: 600 !important;
-      color: var(--bg) !important;
-      background: var(--cyan) !important;
-      border-radius: 7px !important;
-      padding: 7px 16px !important;
-      transition: box-shadow .2s, transform .2s !important;
+    /* featured */
+    .feature { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .screen {
+      position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-hi);
+      box-shadow: 0 40px 120px rgba(0,0,0,.6), 0 0 80px rgba(242,179,61,.08);
+      background: #000; aspect-ratio: 16 / 10;
     }
-    .btn-nav:hover { transform: translateY(-1px); box-shadow: 0 6px 24px var(--cyan-glow) !important; }
+    .screen video { width: 100%; height: 100%; object-fit: cover; }
+    .screen .bar { position: absolute; top: 0; left: 0; right: 0; height: 30px; background: linear-gradient(rgba(0,0,0,.7), transparent); display: flex; gap: 6px; padding: 10px 14px; }
+    .screen .bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.25); }
+    .live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; color: #7ee2a0; text-transform: uppercase; }
+    .live::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #3fd17a; animation: ping 1.8s infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(63,209,122,.6); } 70% { box-shadow: 0 0 0 10px rgba(63,209,122,0); } 100% { box-shadow: 0 0 0 0 rgba(63,209,122,0); } }
+    .feature h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.1; margin: 14px 0 6px; }
+    .feature .venue { font-family: var(--mono); font-size: .78rem; color: var(--gold); margin-bottom: 18px; }
+    .feature p { color: var(--muted); margin-bottom: 14px; }
+    .checks { list-style: none; margin: 18px 0 26px; display: grid; gap: 10px; }
+    .checks li { display: flex; gap: 12px; color: var(--text); font-size: .96rem; }
+    .checks li::before { content: '→'; color: var(--gold); font-family: var(--mono); }
+    @media (max-width: 900px) { .feature { grid-template-columns: 1fr; } }
 
-    .lang-sw {
-      display: flex; gap: 1px;
-      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
-      margin-left: 10px;
+    /* before / after */
+    .ba-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .ba {
+      position: relative; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-hi);
+      cursor: ew-resize; user-select: none; -webkit-user-select: none; touch-action: pan-y; box-shadow: 0 40px 120px rgba(0,0,0,.55);
     }
-    .lang-sw button {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Barlow', sans-serif; font-size: .76rem; font-weight: 500;
-      color: var(--muted); padding: 5px 9px;
-      transition: background .18s, color .18s;
+    .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .ba .after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+    .ba .handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: var(--gold-hi); box-shadow: 0 0 24px var(--gold); transform: translateX(-1px); }
+    .ba .handle::after {
+      content: '⟷'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--gold); color: #1a0f08; font-size: 1.1rem; box-shadow: 0 0 0 6px rgba(242,179,61,.2);
     }
-    .lang-sw button[aria-pressed="true"] { background: var(--card); color: var(--white); }
+    .ba .lbl { position: absolute; top: 14px; font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; padding: 6px 10px; border-radius: 6px; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); }
+    .ba .lbl.l { left: 14px; } .ba .lbl.r { right: 14px; color: var(--gold-hi); }
+    .credit { font-family: var(--mono); font-size: .68rem; color: var(--dim); margin-top: 12px; }
+    @media (max-width: 900px) { .ba-grid { grid-template-columns: 1fr; } }
 
-    .ham {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px;
+    /* projects */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 34px 0 40px; }
+    .chip {
+      font: 500 .85rem var(--sans); color: var(--muted); background: transparent; cursor: pointer;
+      border: 1px solid var(--line-hi); border-radius: 999px; padding: 8px 16px; transition: all .2s;
     }
-    .ham span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+    .chip:hover { color: var(--gold-hi); border-color: var(--gold); }
+    .chip.on { background: var(--gold); color: #1a0f08; border-color: var(--gold); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 22px; }
+    .card {
+      position: relative; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden;
+      background: linear-gradient(180deg, var(--card2), var(--card)); border: 1px solid var(--line);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s, opacity .9s cubic-bezier(.2,.8,.2,1);
+    }
+    .card::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(242,179,61,.16), transparent 45%);
+    }
+    .card:hover { border-color: var(--line-hi); box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 40px rgba(242,179,61,.08); }
+    .card:hover::after { opacity: 1; }
+    .card.hide { display: none; }
+    .thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0e0a09; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s; filter: saturate(.85) brightness(.92); }
+    .thumb.contain img { object-fit: contain; background: #f4efe8; }
+    .card:hover .thumb img { transform: scale(1.06); filter: saturate(1.05) brightness(1); }
+    .badge { position: absolute; top: 12px; left: 12px; font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; padding: 5px 9px; border-radius: 6px; background: rgba(11,8,7,.8); backdrop-filter: blur(6px); color: #7ee2a0; border: 1px solid rgba(126,226,160,.25); }
+    .badge.award { left: auto; right: 12px; color: var(--gold-hi); border-color: var(--line-hi); }
+    .glyph { display: grid; place-items: center; height: 100%; font-family: var(--display); font-style: italic; font-size: 3rem; color: var(--gold);
+      background: radial-gradient(circle at 30% 30%, rgba(124,28,28,.6), transparent 60%), radial-gradient(circle at 80% 80%, rgba(242,179,61,.18), transparent 50%), #120c0a; }
+    .body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+    .tag { font-family: var(--mono); font-size: .7rem; color: var(--gold); letter-spacing: .06em; margin-bottom: 8px; }
+    .card h3 { font-size: 1.32rem; line-height: 1.2; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: .93rem; flex: 1; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .links a { font-family: var(--mono); font-size: .74rem; padding: 6px 11px; border-radius: 8px; border: 1px solid var(--line-hi); color: var(--text); transition: all .2s; white-space: nowrap; }
+    .links a:hover { background: var(--gold); color: #1a0f08; border-color: var(--gold); }
+    .links a.demo { border-color: rgba(126,226,160,.35); color: #9be9b5; }
+    .links a.demo:hover { background: #7ee2a0; color: #08140c; }
 
-    /* =============================================
-       BUTTONS
-    ============================================= */
-    .btn-p, .btn-s {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: 'Barlow', sans-serif; font-weight: 600; font-size: .88rem;
-      padding: 11px 22px; border-radius: 8px; border: none; cursor: pointer;
-      transition: transform .18s, box-shadow .18s, background .18s, border-color .18s;
-      text-decoration: none;
-    }
-    .btn-p {
-      background: var(--cyan); color: var(--bg);
-    }
-    .btn-p:hover { transform: translateY(-1px); box-shadow: 0 8px 28px var(--cyan-glow); }
+    /* publications */
+    .pubs { list-style: none; margin-top: 40px; border-top: 1px solid var(--line); }
+    .pubs li { display: grid; grid-template-columns: 90px 1fr auto; gap: 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); transition: background .25s, padding .25s, opacity .9s, transform .9s; }
+    .pubs li:hover { background: rgba(242,179,61,.03); padding-left: 10px; }
+    .pubs .yr { font-family: var(--mono); color: var(--gold); font-size: .85rem; }
+    .pubs .t { font-family: var(--display); font-size: 1.12rem; color: #fff6ec; line-height: 1.35; }
+    .pubs .v { display: block; font-family: var(--sans); font-size: .86rem; color: var(--muted); margin-top: 4px; }
+    .pubs .v b { color: var(--gold-hi); font-weight: 600; }
+    .pubs .links { margin: 0; flex-wrap: nowrap; }
+    @media (max-width: 700px) { .pubs li { grid-template-columns: 1fr; gap: 8px; } .pubs .links { flex-wrap: wrap; } }
 
-    .btn-s {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-s:hover { border-color: var(--border-hi); background: var(--card); color: var(--white); }
+    /* people */
+    .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 22px; margin-top: 40px; }
+    .person .ph { aspect-ratio: 1; width: min(100%, 220px); border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px var(--line-hi), 0 0 0 8px rgba(242,179,61,.04); margin-bottom: 18px; position: relative; }
+    .person .ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.85) contrast(1.05); transition: filter .5s, transform .6s; }
+    .person:hover .ph img { filter: grayscale(0); transform: scale(1.04); }
+    .person .ph::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(124,28,28,.45)); mix-blend-mode: multiply; }
+    .person h3 { font-size: 1.25rem; }
+    .person .role { font-family: var(--mono); font-size: .72rem; color: var(--gold); letter-spacing: .06em; margin: 4px 0 6px; }
+    .person p { color: var(--muted); font-size: .9rem; }
 
-    /* =============================================
-       HERO
-    ============================================= */
-    .hero {
-      min-height: 100svh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-      padding: 110px clamp(20px, 5vw, 72px) 72px;
-      max-width: 1340px;
-      margin: 0 auto;
-      position: relative;
-    }
+    /* closing + footer */
+    .closing { text-align: center; padding: clamp(90px, 12vw, 150px) 0; overflow: hidden; }
+    .closing h2 { font-size: clamp(2.4rem, 6vw, 4.8rem); max-width: 900px; margin: 18px auto 30px; }
+    .closing .cta { justify-content: center; }
+    .closing::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(900px, 160vw); height: 900px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(124,28,28,.35), transparent 60%); pointer-events: none; }
+    footer { border-top: 1px solid var(--line); padding: 34px 0 44px; color: var(--dim); font-size: .85rem; position: relative; z-index: 1; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 22px; }
+    footer a:hover { color: var(--gold-hi); }
 
-    /* coordinate grid */
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0,204,238,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,204,238,.03) 1px, transparent 1px);
-      background-size: 56px 56px;
-    }
-
-    .hero-content { position: relative; z-index: 2; }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 100px; padding: 5px 13px 5px 7px; margin-bottom: 26px;
-      animation: fsu .5s ease both;
-    }
-    .badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
-      animation: blink 2s ease infinite;
-    }
-    .hero-badge span {
-      font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
-      color: var(--muted); letter-spacing: .06em;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.5rem, 4.8vw, 4rem);
-      font-weight: 800; line-height: 1.08; letter-spacing: -.03em;
-      color: var(--white); margin-bottom: 18px;
-      animation: fsu .5s .08s ease both;
-    }
-    .hero-content h1 em { font-style: normal; color: var(--cyan); }
-
-    .hero-sub {
-      font-size: 1.05rem; color: var(--muted); line-height: 1.72;
-      max-width: 460px; margin-bottom: 32px;
-      animation: fsu .5s .16s ease both;
-    }
-
-    .hero-actions {
-      display: flex; gap: 11px; flex-wrap: wrap;
-      animation: fsu .5s .24s ease both;
-    }
-
-    /* =============================================
-       HERO VISUALIZATION
-    ============================================= */
-    .hero-viz {
-      position: relative; z-index: 2;
-      animation: fsu .7s .18s ease both;
-    }
-
-    .geo-canvas {
-      position: relative;
-      width: 100%; max-width: 500px;
-      aspect-ratio: 1 / 1.05;
-      margin-left: auto;
-    }
-
-    .map-bg {
-      position: absolute; inset: 0;
-      background: var(--card);
-      border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
-    }
-
-    /* inner grid */
-    .map-bg::before {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,204,238,.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,204,238,.055) 1px, transparent 1px);
-      background-size: 38px 38px;
-    }
-
-    /* scan line */
-    .map-bg::after {
-      content: ''; position: absolute; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-      box-shadow: 0 0 18px var(--cyan), 0 0 50px var(--cyan-glow);
-      animation: scan 4s ease infinite;
-    }
-
-    .map-streets-h, .map-streets-v {
-      position: absolute; background: rgba(0,204,238,.07);
-    }
-    .map-streets-h { height: 1px; left: 0; right: 0; }
-    .map-streets-v { width: 1px; top: 0; bottom: 0; }
-
-    .map-top {
-      position: absolute; top: 11px; left: 12px; z-index: 2;
-      font-family: 'IBM Plex Mono', monospace; font-size: .57rem;
-      color: var(--dim); line-height: 1.6;
-    }
-    .map-event {
-      position: absolute; top: 11px; right: 12px; z-index: 2;
-      background: rgba(255,96,48,.12); border: 1px solid rgba(255,96,48,.28);
-      border-radius: 5px; padding: 3px 9px;
-      font-family: 'IBM Plex Mono', monospace; font-size: .57rem; color: var(--orange);
-    }
-
-    /* parcels */
-    .pc {
-      position: absolute; border-radius: 3px; border: 1px solid;
-    }
-    .pc-lbl {
-      position: absolute; top: -18px; left: 0;
-      font-family: 'IBM Plex Mono', monospace; font-size: .55rem; white-space: nowrap;
-    }
-    .pc-score {
-      position: absolute; bottom: 3px; right: 4px;
-      font-family: 'IBM Plex Mono', monospace; font-size: .58rem; font-weight: 500;
-    }
-
-    .ph { border-color: var(--orange); background: rgba(255,96,48,.12); }
-    .ph .pc-lbl, .ph .pc-score { color: var(--orange); }
-    .pm { border-color: var(--amber); background: rgba(245,166,35,.09); }
-    .pm .pc-lbl, .pm .pc-score { color: var(--amber); }
-    .pl { border-color: var(--green); background: rgba(31,212,106,.07); }
-    .pl .pc-lbl, .pl .pc-score { color: var(--green); }
-
-    .pa1 { top:19%; left:14%; width:19%; height:15%; animation: fh 3.2s .4s ease infinite; }
-    .pa2 { top:37%; left:39%; width:22%; height:17%; animation: fm 3.4s .9s ease infinite; }
-    .pa3 { top:57%; left:21%; width:17%; height:13%; }
-    .pa4 { top:54%; left:58%; width:20%; height:16%; animation: fh 3.0s 1.4s ease infinite; }
-    .pa5 { top:27%; left:62%; width:15%; height:11%; }
-    .pa6 { top:72%; left:43%; width:19%; height:12%; animation: fm 3.6s 2.0s ease infinite; }
-
-    /* coord labels on edges */
-    .cl { position: absolute; font-family: 'IBM Plex Mono', monospace; font-size: .52rem; color: var(--dim); }
-    .cl-l { left: 7px; }
-    .cl-b { bottom: 7px; }
-
-    /* assessment panel */
-    .ap {
-      position: absolute; right: -18px; bottom: 38px; width: 204px;
-      background: rgba(12,18,32,.96); border: 1px solid var(--border);
-      border-radius: 11px; padding: 13px 15px;
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow), 0 0 32px var(--cyan-glow);
-    }
-    .ap-head {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px;
-    }
-    .ap-title {
-      font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: var(--cyan); letter-spacing: .05em;
-    }
-    .ap-live {
-      display: flex; align-items: center; gap: 3px;
-      font-family: 'IBM Plex Mono', monospace; font-size: .56rem; color: var(--green);
-    }
-    .live-dot {
-      width: 5px; height: 5px; border-radius: 50%; background: var(--green);
-      animation: blink 1.6s ease infinite;
-    }
-    .ap-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 5px 0; border-bottom: 1px solid rgba(28,43,66,.5);
-    }
-    .ap-row:last-child { border: none; }
-    .ap-lbl { font-size: .7rem; color: var(--muted); }
-    .ap-val {
-      font-family: 'IBM Plex Mono', monospace; font-size: .7rem; font-weight: 500;
-    }
-    .c-hi { color: var(--orange); }
-    .c-cy { color: var(--cyan); }
-    .c-lo { color: var(--green); }
-    .c-am { color: var(--amber); }
-
-    .sig-bars { display: flex; gap: 2px; align-items: flex-end; height: 11px; }
-    .sig-bars span { width: 4px; border-radius: 1px; background: var(--cyan); }
-    .sig-bars span:nth-child(1) { height: 4px; }
-    .sig-bars span:nth-child(2) { height: 7px; }
-    .sig-bars span:nth-child(3) { height: 10px; }
-    .sig-bars span:nth-child(4) { height: 11px; opacity: .5; }
-
-    /* =============================================
-       STATS BAND
-    ============================================= */
-    .stats-band {
-      background: var(--card);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .stats-inner {
-      display: flex; justify-content: space-around; align-items: center;
-      flex-wrap: wrap; gap: 24px;
-      padding: 28px clamp(20px, 5vw, 72px);
-      max-width: 1180px; margin: 0 auto;
-    }
-    .stat-it { text-align: center; }
-    .stat-n {
-      font-family: 'Barlow Semi Condensed', sans-serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-      font-weight: 800; color: var(--white); line-height: 1; display: block;
-    }
-    .stat-n sup { font-size: .55em; color: var(--cyan); }
-    .stat-l { font-size: .78rem; color: var(--muted); margin-top: 5px; max-width: 150px; }
-    .stat-div { width: 1px; height: 44px; background: var(--border); }
-
-    /* =============================================
-       PRODUCT SECTION
-    ============================================= */
-    .prod-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-    }
-    .prod-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 26px; position: relative; overflow: hidden;
-      transition: border-color .25s, transform .25s;
-    }
-    .prod-card::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      opacity: 0; transition: opacity .25s;
-    }
-    .prod-card.ac::after { background: var(--orange); }
-    .prod-card.cl::after { background: var(--cyan); }
-    .prod-card.ri::after { background: var(--green); }
-    .prod-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
-    .prod-card:hover::after { opacity: 1; }
-
-    .prod-icon {
-      width: 38px; height: 38px; border-radius: 8px; display: flex;
-      align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 18px;
-    }
-    .ac .prod-icon { background: var(--orange-dim); }
-    .cl .prod-icon { background: var(--cyan-dim); }
-    .ri .prod-icon { background: var(--green-dim); }
-
-    .prod-kicker {
-      font-family: 'IBM Plex Mono', monospace; font-size: .63rem;
-      letter-spacing: .09em; text-transform: uppercase; display: block; margin-bottom: 9px;
-    }
-    .ac .prod-kicker { color: var(--orange); }
-    .cl .prod-kicker { color: var(--cyan); }
-    .ri .prod-kicker { color: var(--green); }
-
-    .prod-card h3 { font-size: 1.12rem; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.3; }
-    .prod-card p  { font-size: .88rem; color: var(--muted); line-height: 1.65; }
-
-    /* =============================================
-       PROCESS SECTION
-    ============================================= */
-    .proc-sec {
-      background: var(--card);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .proc-steps {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; position: relative;
-    }
-    .proc-steps::before {
-      content: ''; position: absolute; top: 23px; left: 8%; right: 8%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border), var(--cyan), var(--border));
-    }
-    .proc-step { padding: 0 20px; text-align: center; }
-    .proc-num {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--bg); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px; font-family: 'IBM Plex Mono', monospace; font-size: .76rem;
-      color: var(--cyan); position: relative; z-index: 1;
-    }
-    .proc-step h4 { font-size: .98rem; font-weight: 600; color: var(--white); margin-bottom: 7px; }
-    .proc-step p  { font-size: .83rem; color: var(--muted); line-height: 1.6; }
-
-    /* =============================================
-       EDGE GRID
-    ============================================= */
-    .edge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .edge-card {
-      border: 1px solid var(--border); border-radius: 12px; padding: 26px;
-      transition: border-color .25s;
-    }
-    .edge-card:hover { border-color: var(--border-hi); }
-    .edge-n { font-family: 'IBM Plex Mono', monospace; font-size: .66rem; color: var(--dim); display: block; margin-bottom: 11px; }
-    .edge-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 9px; line-height: 1.3; }
-    .edge-card p  { font-size: .86rem; color: var(--muted); line-height: 1.65; }
-
-    /* =============================================
-       RESEARCH
-    ============================================= */
-    .res-sec {
-      background: var(--card);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .paper-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .paper-card {
-      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden; transition: border-color .25s, transform .25s;
-    }
-    .paper-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
-
-    .paper-img { height: 130px; overflow: hidden; background: var(--bg2); }
-    .paper-img img { width: 100%; height: 100%; object-fit: cover; opacity: .8; transition: opacity .3s; }
-    .paper-card:hover .paper-img img { opacity: 1; }
-
-    .paper-body { padding: 18px; }
-    .paper-meta { font-family: 'IBM Plex Mono', monospace; font-size: .6rem; color: var(--cyan); display: block; margin-bottom: 9px; }
-    .paper-card h4 { font-size: .92rem; font-weight: 600; color: var(--white); line-height: 1.4; margin-bottom: 9px; }
-    .paper-card p  { font-size: .8rem; color: var(--muted); line-height: 1.6; margin-bottom: 13px; }
-    .paper-links { display: flex; gap: 8px; flex-wrap: wrap; }
-    .pl-a {
-      font-family: 'IBM Plex Mono', monospace; font-size: .62rem; color: var(--cyan);
-      border: 1px solid rgba(0,204,238,.2); padding: 3px 9px; border-radius: 4px;
-      transition: background .18s, border-color .18s;
-    }
-    .pl-a:hover { background: var(--cyan-dim); border-color: rgba(0,204,238,.4); }
-
-    .project-band {
-      margin-top: 24px;
-      display: grid; grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px; align-items: center;
-      background: linear-gradient(90deg, rgba(0,204,238,.08), rgba(31,212,106,.05));
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 24px;
-    }
-    .project-band h3 {
-      margin-top: 8px; color: var(--white); font-size: 1.18rem;
-      font-weight: 650; line-height: 1.28;
-    }
-    .project-band p {
-      margin-top: 9px; color: var(--muted); font-size: .88rem;
-      line-height: 1.65; max-width: 720px;
-    }
-    .project-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-
-    /* =============================================
-       CUSTOMERS
-    ============================================= */
-    .cust-sec {
-      background: var(--card);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .cust-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-
-    .cust-list { display: flex; flex-direction: column; }
-    .cust-item { padding: 22px 0; border-bottom: 1px solid var(--border); }
-    .cust-item:last-child { border: none; }
-    .cust-item h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 7px; }
-    .cust-item p  { font-size: .86rem; color: var(--muted); line-height: 1.65; }
-
-    .pilot-card {
-      background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
-      padding: 26px; position: relative; overflow: hidden;
-    }
-    .pilot-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--green));
-    }
-    .pilot-badge {
-      font-family: 'IBM Plex Mono', monospace; font-size: .62rem;
-      letter-spacing: .08em; text-transform: uppercase; color: var(--cyan);
-      background: var(--cyan-dim); border: 1px solid rgba(0,204,238,.2);
-      padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 14px;
-    }
-    .pilot-card h3 { font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 9px; }
-    .pilot-card p  { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
-    .pilot-card a  {
-      font-size: .86rem; font-weight: 600; color: var(--cyan);
-      border-bottom: 1px solid rgba(0,204,238,.3); padding-bottom: 1px;
-      transition: border-color .18s;
-    }
-    .pilot-card a:hover { border-color: var(--cyan); }
-
-    /* =============================================
-       MARKET STATS
-    ============================================= */
-    .mkt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .mkt-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 26px;
-    }
-    .mkt-card strong {
-      font-family: 'Barlow Semi Condensed', sans-serif; font-size: clamp(1.9rem, 2.8vw, 2.6rem);
-      font-weight: 800; color: var(--white); line-height: 1; display: block; margin-bottom: 9px;
-    }
-    .mkt-card p   { font-size: .86rem; color: var(--muted); line-height: 1.6; margin-bottom: 11px; }
-    .mkt-card cite { font-style: normal; }
-    .mkt-card cite a {
-      font-family: 'IBM Plex Mono', monospace; font-size: .62rem; color: var(--cyan);
-      border-bottom: 1px solid rgba(0,204,238,.3);
-    }
-
-    /* =============================================
-       TEAM
-    ============================================= */
-    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .team-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
-      transition: border-color .25s;
-    }
-    .team-card:hover { border-color: var(--border-hi); }
-    .team-av {
-      width: 60px; height: 60px; border-radius: 50%; overflow: hidden;
-      border: 2px solid var(--border); margin-bottom: 14px; background: var(--bg2);
-    }
-    .team-av img { width: 100%; height: 100%; object-fit: cover; }
-    .team-role {
-      font-family: 'IBM Plex Mono', monospace; font-size: .6rem;
-      letter-spacing: .07em; text-transform: uppercase; color: var(--cyan); display: block; margin-bottom: 5px;
-    }
-    .team-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--white); margin-bottom: 9px; }
-    .team-card p  { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 13px; }
-    .team-lnk { font-size: .78rem; color: var(--dim); transition: color .18s; }
-    .team-lnk:hover { color: var(--cyan); }
-
-    /* =============================================
-       ROADMAP
-    ============================================= */
-    .road-sec {
-      background: var(--card);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .timeline {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; list-style: none; position: relative;
-    }
-    .timeline::before {
-      content: ''; position: absolute; top: 19px; left: 4%; right: 4%;
-      height: 1px; background: var(--border);
-    }
-    .tl-item { padding: 0 14px; }
-    .tl-dot {
-      width: 38px; height: 38px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'IBM Plex Mono', monospace; font-size: .7rem;
-      margin-bottom: 18px; position: relative; z-index: 1; border: 1px solid;
-    }
-    .tl-item[data-s="active"] .tl-dot {
-      background: var(--cyan-dim); border-color: var(--cyan); color: var(--cyan);
-      box-shadow: 0 0 18px var(--cyan-glow);
-    }
-    .tl-item[data-s="planned"] .tl-dot {
-      background: var(--bg); border-color: var(--border); color: var(--dim);
-    }
-    .tl-status {
-      font-family: 'IBM Plex Mono', monospace; font-size: .58rem;
-      letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 7px;
-    }
-    .tl-item[data-s="active"] .tl-status { color: var(--cyan); }
-    .tl-item[data-s="planned"] .tl-status { color: var(--dim); }
-    .tl-item p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
-
-    /* =============================================
-       CTA
-    ============================================= */
-    .cta-sec {
-      text-align: center;
-      padding: clamp(80px, 12vw, 140px) clamp(20px, 5vw, 72px);
-      position: relative; overflow: hidden;
-    }
-    .cta-sec::before {
-      content: ''; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 600px; pointer-events: none;
-      background: radial-gradient(ellipse, rgba(0,204,238,.055) 0%, transparent 68%);
-    }
-    .cta-sec .eyebrow { display: block; margin-bottom: 14px; }
-    .cta-sec h2 {
-      font-size: clamp(2rem, 3.8vw, 3.3rem); font-weight: 800;
-      color: var(--white); letter-spacing: -.03em; line-height: 1.1;
-      max-width: 760px; margin: 0 auto 14px;
-    }
-    .cta-sec > p {
-      font-size: 1.02rem; color: var(--muted); max-width: 540px;
-      margin: 0 auto 32px; line-height: 1.72;
-    }
-    .cta-actions { display: flex; gap: 11px; justify-content: center; flex-wrap: wrap; }
-
-    /* =============================================
-       FOOTER
-    ============================================= */
-    .footer {
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      padding: 38px clamp(20px, 5vw, 72px);
-    }
-    .foot-inner {
-      max-width: 1180px; margin: 0 auto;
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      align-items: center; gap: 22px;
-    }
-    .foot-brand p { font-size: .8rem; color: var(--dim); margin-top: 7px; max-width: 320px; line-height: 1.6; }
-    .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
-    .foot-links a { font-size: .83rem; color: var(--muted); transition: color .18s; }
-    .foot-links a:hover { color: var(--white); }
-    .foot-copy { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; color: var(--dim); }
-
-    /* =============================================
-       KEYFRAMES
-    ============================================= */
-    @keyframes fsu {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @keyframes blink {
-      0%,100% { opacity: 1; }
-      50%      { opacity: .45; }
-    }
-    @keyframes scan {
-      0%   { top: -5%; opacity: 0; }
-      5%   { opacity: 1; }
-      95%  { opacity: 1; }
-      100% { top: 110%; opacity: 0; }
-    }
-    @keyframes fh {
-      0%,100% { background: rgba(255,96,48,.10); }
-      50%     { background: rgba(255,96,48,.24); box-shadow: 0 0 10px rgba(255,96,48,.28); }
-    }
-    @keyframes fm {
-      0%,100% { background: rgba(245,166,35,.07); }
-      50%     { background: rgba(245,166,35,.20); box-shadow: 0 0 10px rgba(245,166,35,.22); }
-    }
-
-    /* =============================================
-       RESPONSIVE
-    ============================================= */
-    @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 96px; }
-      .hero-viz { max-width: 460px; margin: 0 auto; }
-      .prod-grid, .edge-grid, .mkt-grid { grid-template-columns: repeat(2, 1fr); }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .proc-steps { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-      .proc-steps::before { display: none; }
-      .timeline { grid-template-columns: 1fr 1fr; gap: 24px; }
-      .timeline::before { display: none; }
-      .paper-grid { grid-template-columns: repeat(2, 1fr); }
-      .cust-layout { grid-template-columns: 1fr; gap: 44px; }
-      .project-band { grid-template-columns: 1fr; }
-      .project-actions { justify-content: flex-start; }
-    }
-
-    @media (max-width: 720px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 72px; left: 0; right: 0;
-        background: var(--card); border-bottom: 1px solid var(--border);
-        padding: 14px 20px; gap: 4px; z-index: 89;
-      }
-      .ham { display: flex; }
-      .prod-grid, .edge-grid, .mkt-grid, .team-grid, .paper-grid { grid-template-columns: 1fr; }
-      .timeline { grid-template-columns: 1fr; }
-      .stats-inner { gap: 28px; }
-      .stat-div { display: none; }
-      .ap { right: 0; }
-      .project-band { padding: 20px; }
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .card.reveal.in:hover { transition-delay: 0s !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <div class="glow-cursor" aria-hidden="true"></div>
 
-<!-- NAV -->
-<header class="nav" id="top">
-  <a class="nav-brand" href="#top" aria-label="Rayford AI home">
-    <img class="nav-logo" src="assets/brand/logo-mark.svg" alt="Rayford AI mark">
-    <div>
-      <span class="nav-wordmark">Rayford AI</span>
-      <span class="nav-sub">GEOSPATIAL PHYSICAL AI</span>
-    </div>
-  </a>
-
-  <div style="display:flex;align-items:center;gap:6px">
-    <nav>
-      <ul class="nav-links" id="primary-nav" aria-label="Primary navigation">
-        <li><a href="#product">Platform</a></li>
-        <li><a href="#technology">Research</a></li>
-        <li><a href="#customers">Customers</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#roadmap">Plan</a></li>
-        <li><a href="demo/">Demo</a></li>
-        <li><a href="https://human-eval.rayford-ai.com/" target="_blank" rel="noopener">Evaluation</a></li>
-        <li><a class="btn-nav" href="mailto:contact@rayford-ai.com">Discuss a Pilot →</a></li>
-      </ul>
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Rayford AI Lab home">
+      <img src="assets/brand/lab-mark.png" alt="">
+      <span><b>Rayford AI</b> <i>Lab</i></span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#featured"><span class="en">Demos</span><span class="zh">演示</span></a>
+      <a href="#projects"><span class="en">Projects</span><span class="zh">项目</span></a>
+      <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span></a>
+      <a href="#people"><span class="en">People</span><span class="zh">成员</span></a>
+      <a class="keep" href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub ↗</a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language / 切换语言"><span class="en">中文</span><span class="zh">EN</span></button>
     </nav>
-    <div class="lang-sw" aria-label="Language">
-      <button aria-pressed="true" data-lang-toggle="en">EN</button>
-      <button aria-pressed="false" data-lang-toggle="zh">中文</button>
-    </div>
-    <button class="ham" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+  </header>
 
-<main>
-
-  <!-- ============ HERO ============ -->
-  <section class="hero" aria-label="Rayford AI overview">
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        <span>GEOSPATIAL PHYSICAL AI · RAY BY RAYFORD AI</span>
+  <main id="top">
+    <section class="hero">
+      <canvas id="map" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="eyebrow reveal"><span class="en">Geospatial AI · Disaster Resilience</span><span class="zh">地理空间 AI · 灾害韧性</span></div>
+        <h1 class="reveal">
+          <span class="en">Seeing disasters<br>from <em>every view.</em></span>
+          <span class="zh">从<em>每一个视角</em><br>看见灾害。</span>
+        </h1>
+        <p class="lede reveal">
+          <span class="en">We build geospatial AI that reads satellite, street-view and drone imagery, explains what it sees, and shows the evidence behind every number. Every project here comes with a live demo, a paper, or open code.</span>
+          <span class="zh">我们研究能读懂卫星、街景与无人机影像的地理空间 AI：说清它看到了什么，并给出每一个数字背后的证据。这里的每个项目都附有在线演示、论文或开源代码。</span>
+        </p>
+        <div class="cta reveal">
+          <a class="btn btn-gold" href="#projects"><span class="en">Explore projects</span><span class="zh">浏览项目</span> →</a>
+          <a class="btn btn-ghost" href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><b data-count="projects">0</b><span class="en">Projects</span><span class="zh">项目</span></div>
+          <div class="stat"><b data-count="demos">0</b><span class="en">Live demos</span><span class="zh">在线演示</span></div>
+          <div class="stat"><b data-count="pubs">0</b><span class="en">Publications</span><span class="zh">论文与著作</span></div>
+        </div>
       </div>
-      <h1>The intelligence layer for the <em>physical world.</em></h1>
-      <p class="hero-sub">
-        Ray turns remote sensing, street-level imagery, and geospatial context into auditable intelligence for disaster, infrastructure, and property decisions.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-p" href="#product">Explore Ray Platform →</a>
-        <a class="btn-s" href="demo/">View Demo</a>
-        <a class="btn-s" href="#technology">Our Research</a>
+      <div class="hud" aria-hidden="true">
+        <div>SCAN · <b id="hud-event">HURRICANE MILTON 2024</b></div>
+        <div id="hud-coord">27.77°N 82.75°W</div>
+        <div>VIEWS · SATELLITE / STREET / DRONE</div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>ACM SIGSPATIAL 2026 · OASIS</span><span>GeoSearch ’26</span><span>SC26 Posters</span><span>IGARSS 2026</span><span>Computers, Environment and Urban Systems</span><span>ICC 2025 · Best Student Paper</span><span>CRC Press</span><span>Esri Press</span><span>Applied Sciences</span>
+        <span>ACM SIGSPATIAL 2026 · OASIS</span><span>GeoSearch ’26</span><span>SC26 Posters</span><span>IGARSS 2026</span><span>Computers, Environment and Urban Systems</span><span>ICC 2025 · Best Student Paper</span><span>CRC Press</span><span>Esri Press</span><span>Applied Sciences</span>
       </div>
     </div>
 
-    <!-- GEOSPATIAL VISUALIZATION -->
-    <div class="hero-viz" aria-hidden="true">
-      <div class="geo-canvas">
-        <div class="map-bg">
-          <!-- street grid -->
-          <div class="map-streets-h" style="top:34%"></div>
-          <div class="map-streets-h" style="top:64%"></div>
-          <div class="map-streets-v" style="left:37%"></div>
-          <div class="map-streets-v" style="left:70%"></div>
+    <section id="featured">
+      <div class="wrap feature">
+        <div class="screen reveal">
+          <video src="assets/projects/ray-resilience-loop.mp4" poster="assets/projects/ray-resilience.webp" autoplay muted loop playsinline preload="metadata" aria-label="Ray Resilience demo recording"></video>
+          <div class="bar"><i></i><i></i><i></i></div>
+        </div>
+        <div class="reveal">
+          <div class="live"><span class="en">Featured · live demo</span><span class="zh">重点项目 · 在线演示</span></div>
+          <h3>RAY · Resilience Assistant for You</h3>
+          <div class="venue">ACM SIGSPATIAL 2026 · OASIS Track A</div>
+          <p class="en">A harness for GeoAI agents in disaster intelligence. Ask about any place, and RAY answers with maps, numbers and the sources behind them, for residents, planners and analysts.</p>
+          <p class="zh">面向灾害情报的 GeoAI 智能体框架。问任何一个地方，RAY 都会用地图、数字和背后的数据来源回答，服务居民、规划者和分析师。</p>
+          <ul class="checks">
+            <li><span class="en">Each analysis step is authorized by the data it reads</span><span class="zh">每一步分析都由它读取的数据授权</span></li>
+            <li><span class="en">Every number is checked against the result it cites</span><span class="zh">每个数字都与它引用的结果逐一核对</span></li>
+            <li><span class="en">Any run replays without the model</span><span class="zh">任何一次运行都能脱离模型重放</span></li>
+          </ul>
+          <div class="cta" style="margin-top:0">
+            <a class="btn btn-gold" href="https://rayford295.github.io/ray-resilience/" target="_blank" rel="noopener"><span class="en">Open the demo</span><span class="zh">打开演示</span> ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/Rayford-AI/ray-resilience" target="_blank" rel="noopener"><span class="en">Code</span><span class="zh">代码</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- coord labels -->
-          <div class="cl cl-l" style="top:24%">29.72°N</div>
-          <div class="cl cl-l" style="top:50%">29.71°N</div>
-          <div class="cl cl-l" style="top:74%">29.70°N</div>
-          <div class="cl cl-b" style="left:12%">-95.39°W</div>
-          <div class="cl cl-b" style="left:38%">-95.38°W</div>
-          <div class="cl cl-b" style="left:63%">-95.37°W</div>
+    <section style="padding-top:0">
+      <div class="wrap ba-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="en">Drag to compare</span><span class="zh">拖动对比</span></div>
+          <h2><span class="en">One coast, <em>before and after</em> Milton.</span><span class="zh">同一段海岸，<em>飓风米尔顿</em>前后。</span></h2>
+          <p class="lede">
+            <span class="en">Treasure Island, Florida, seen from orbit in November 2023 and again on 10 October 2024, the day after Hurricane Milton made landfall. Our models combine pairs like this with the view from the street to estimate damage, debris and recovery building by building.</span>
+            <span class="zh">佛罗里达州 Treasure Island，2023 年 11 月与 2024 年 10 月 10 日（飓风米尔顿登陆次日）的卫星影像。我们的模型把这样的影像对和街景结合起来，逐栋估算损毁、废墟量与恢复情况。</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <div class="ba" id="ba" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+            <img src="assets/projects/milton-pre.webp" alt="Treasure Island, Florida, before Hurricane Milton" loading="lazy">
+            <img class="after" src="assets/projects/milton-post.webp" alt="Treasure Island, Florida, after Hurricane Milton" loading="lazy">
+            <div class="handle"></div>
+            <span class="lbl l"><span class="en">BEFORE · 2023-11-04</span><span class="zh">灾前 · 2023-11-04</span></span>
+            <span class="lbl r"><span class="en">AFTER · 2024-10-10</span><span class="zh">灾后 · 2024-10-10</span></span>
+          </div>
+          <div class="credit">Imagery: Maxar Open Data Program (CC BY-NC 4.0), via debris-estimate.</div>
+        </div>
+      </div>
+    </section>
 
-          <div class="map-top">RAY ASSESS<br>HURRICANE MILTON</div>
-          <div class="map-event">POST-EVENT</div>
-
-          <!-- parcels -->
-          <div class="pc ph pa1"><span class="pc-lbl">P-041</span><span class="pc-score">0.84</span></div>
-          <div class="pc pm pa2"><span class="pc-lbl">P-067</span><span class="pc-score">0.51</span></div>
-          <div class="pc pl pa3"><span class="pc-lbl">P-023</span><span class="pc-score">0.12</span></div>
-          <div class="pc ph pa4"><span class="pc-lbl">P-092</span><span class="pc-score">0.77</span></div>
-          <div class="pc pl pa5"><span class="pc-lbl">P-015</span><span class="pc-score">0.09</span></div>
-          <div class="pc pm pa6"><span class="pc-lbl">P-058</span><span class="pc-score">0.48</span></div>
+    <section id="projects" style="padding-top:0">
+      <div class="wrap">
+        <div class="eyebrow reveal"><span class="en">Projects</span><span class="zh">项目</span></div>
+        <h2 class="reveal"><span class="en">Research you can <em>open, run and read.</em></span><span class="zh">可以<em>打开、运行、细读</em>的研究。</span></h2>
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="chip on" data-f="all" aria-pressed="true"><span class="en">All</span><span class="zh">全部</span></button>
+          <button class="chip" data-f="demo" aria-pressed="false"><span class="en">Live demos</span><span class="zh">在线演示</span></button>
+          <button class="chip" data-f="assess" aria-pressed="false"><span class="en">Damage assessment</span><span class="zh">损毁评估</span></button>
+          <button class="chip" data-f="gen" aria-pressed="false"><span class="en">Generative AI</span><span class="zh">生成式 AI</span></button>
+          <button class="chip" data-f="agents" aria-pressed="false"><span class="en">Agents &amp; LMMs</span><span class="zh">智能体与多模态大模型</span></button>
+          <button class="chip" data-f="map" aria-pressed="false"><span class="en">Mapping &amp; HPC</span><span class="zh">制图与高性能计算</span></button>
+          <button class="chip" data-f="res" aria-pressed="false"><span class="en">Resources</span><span class="zh">资源</span></button>
         </div>
 
-        <!-- ASSESS PANEL -->
-        <aside class="ap" aria-label="Ray Assess sample output">
-          <div class="ap-head">
-            <span class="ap-title">RAY ASSESS · P-041</span>
-            <div class="ap-live"><span class="live-dot"></span> LIVE</div>
-          </div>
-          <div class="ap-row"><span class="ap-lbl">Damage score</span><span class="ap-val c-hi">0.84</span></div>
-          <div class="ap-row"><span class="ap-lbl">Confidence</span><span class="ap-val c-cy">HIGH</span></div>
-          <div class="ap-row"><span class="ap-lbl">Evidence</span><span class="ap-val" style="font-size:.65rem;color:var(--muted)">Roof + debris</span></div>
-          <div class="ap-row"><span class="ap-lbl">Action</span><span class="ap-val c-hi">INSPECT</span></div>
-          <div class="ap-row"><span class="ap-lbl">Signal</span><div class="sig-bars"><span></span><span></span><span></span><span></span></div></div>
-        </aside>
-      </div>
-    </div>
-  </section>
+        <div class="grid" id="grid">
+          <article class="card reveal" data-t="agents demo">
+            <a class="thumb" href="https://rayford295.github.io/ray-resilience/" target="_blank" rel="noopener"><img src="assets/projects/ray-resilience.webp" alt="RAY web app" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">ACM SIGSPATIAL 2026 · OASIS</div><h3>RAY · Ray Resilience</h3>
+              <p><span class="en">An accountable GeoAI agent for place-based disaster intelligence, as a WebGIS and phone app.</span><span class="zh">可问责的 GeoAI 智能体，提供面向具体地点的灾害情报，网页与手机端皆可用。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/ray-resilience/" target="_blank" rel="noopener">Demo ↗</a><a href="https://github.com/Rayford-AI/ray-resilience" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
 
-  <!-- ============ STATS BAND ============ -->
-  <div class="stats-band" role="region" aria-label="Key statistics">
-    <div class="stats-inner">
-      <div class="stat-it">
-        <span class="stat-n">27<sup>events</sup></span>
-        <p class="stat-l">U.S. billion-dollar climate disasters in 2024</p>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-it">
-        <span class="stat-n">$182.7<sup>B</sup></span>
-        <p class="stat-l">Estimated U.S. damage from 2024 disasters</p>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-it">
-        <span class="stat-n">$137<sup>B</sup></span>
-        <p class="stat-l">Global insured catastrophe losses, 2024</p>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat-it">
-        <span class="stat-n">5<sup>+papers</sup></span>
-        <p class="stat-l">Published GeoAI research behind Ray's engine</p>
-      </div>
-    </div>
-  </div>
+          <article class="card reveal" data-t="assess demo">
+            <a class="thumb" href="https://rayford295.github.io/CrossViewGate/" target="_blank" rel="noopener"><img src="assets/projects/crossviewgate.webp" alt="CrossViewGate conflict cases" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">GeoSearch ’26 · ACM SIGSPATIAL</div><h3>CrossViewGate</h3>
+              <p><span class="en">When satellite and street views disagree: a visibility-aware gate that trusts the view that actually sees the damage.</span><span class="zh">当卫星和街景意见不一时，用可见性感知的门控去信任真正看见损毁的那个视角。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/CrossViewGate/" target="_blank" rel="noopener">Demo ↗</a><a href="https://dl.acm.org/doi/10.1145/3849732.3857333" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/CrossViewGate" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
 
-  <!-- ============ PLATFORM ============ -->
-  <section class="sec" id="product">
+          <article class="card reveal" data-t="gen demo">
+            <a class="thumb" href="https://rayford295.github.io/PrepStreet/" target="_blank" rel="noopener"><img src="assets/projects/prepstreet.webp" alt="PrepStreet generated street views" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">Extended abstract · 2026</div><h3>PrepStreet</h3>
+              <p><span class="en">Seeing hurricane damage before it happens: predict street-level severity from forecasts, then generate the post-storm street.</span><span class="zh">在飓风来临前看见损毁：根据预报预测街道级损毁程度，并生成风暴过后的街景。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/PrepStreet/" target="_blank" rel="noopener">Demo ↗</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="gen">
+            <a class="thumb" href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener"><img src="assets/research/satellite-to-street.png" alt="Satellite-to-street generation" loading="lazy"></a>
+            <div class="body"><div class="tag">IGARSS 2026</div><h3>Sat2Street-DisasterGen</h3>
+              <p><span class="en">Synthesizes post-disaster street views from satellite imagery, checked by people in a human evaluation study.</span><span class="zh">从卫星影像合成灾后街景，并通过人工评测检验真实感。</span></p>
+              <div class="links"><a href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/Sat2Street-DisasterGen" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="agents assess">
+            <a class="thumb" href="https://arxiv.org/abs/2606.21819" target="_blank" rel="noopener"><img src="assets/projects/rapid.webp" alt="RAPID multi-agent output" loading="lazy"></a>
+            <div class="body"><div class="tag">arXiv 2026</div><h3>RAPID</h3>
+              <p><span class="en">A reproducible multi-agent pipeline that explains damage calls from satellite and street-view imagery.</span><span class="zh">可复现的多智能体流程，结合卫星与街景影像给出可解释的损毁判断。</span></p>
+              <div class="links"><a href="https://arxiv.org/abs/2606.21819" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/RAPID" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="assess">
+            <a class="thumb" href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener"><img src="assets/research/damagearbiter.png" alt="DamageArbiter framework" loading="lazy"></a>
+            <div class="body"><div class="tag">arXiv 2026</div><h3>DamageArbiter</h3>
+              <p><span class="en">Multimodal arbitration between models for disaster damage assessment from street-view imagery.</span><span class="zh">多模态仲裁框架，在多个模型之间裁决街景中的灾害损毁。</span></p>
+              <div class="links"><a href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/DamageArbiter" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="assess">
+            <a class="thumb" href="https://doi.org/10.1016/j.compenvurbsys.2025.102335" target="_blank" rel="noopener"><img src="assets/research/bi-temporal-streetview.png" alt="Bi-temporal street view" loading="lazy"></a>
+            <div class="body"><div class="tag">CEUS 2025</div><h3>Bi-Temporal StreetView</h3>
+              <p><span class="en">Hyperlocal damage assessment from street views taken before and after a disaster.</span><span class="zh">利用灾前灾后两期街景进行超本地化损毁评估。</span></p>
+              <div class="links"><a href="https://doi.org/10.1016/j.compenvurbsys.2025.102335" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/Bi-Temporal-StreetView" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="assess agents">
+            <a class="thumb" href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener"><img src="assets/research/disastervlp.png" alt="DisasterVLP" loading="lazy"><span class="badge award">Best Student Paper</span></a>
+            <div class="body"><div class="tag">ICC 2025</div><h3>DisasterVLP</h3>
+              <p><span class="en">Visual-language models that read several kinds of damage from a single street scene.</span><span class="zh">用视觉语言模型从一张街景中读出多种维度的损毁。</span></p>
+              <div class="links"><a href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/DisasterVLP" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="gen demo">
+            <a class="thumb contain" href="https://rayford295.github.io/GenAI4Dresilience/" target="_blank" rel="noopener"><img src="assets/projects/genai4d.webp" alt="GenAI for disaster resilience framework" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">CRC Press · book chapter</div><h3>GenAI4Dresilience</h3>
+              <p><span class="en">A lifecycle framework for generative AI in disaster resilience, with a Hurricane Ian and Milton case study.</span><span class="zh">生成式 AI 用于灾害韧性的全周期框架，附飓风伊恩与米尔顿案例。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/GenAI4Dresilience/" target="_blank" rel="noopener">Demo ↗</a><a href="https://github.com/Rayford-AI/GenAI4Dresilience" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="map demo">
+            <a class="thumb" href="https://rayford295.github.io/drone-compression-hpc/" target="_blank" rel="noopener"><img src="assets/projects/drone.webp" alt="Drone imagery reconstruction" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">SC26 · Poster</div><h3>Drone Compression on HPC</h3>
+              <p><span class="en">Diffusion compression and tiled reconstruction of full-resolution drone imagery on GPU supercomputers.</span><span class="zh">在 GPU 超算上对全分辨率无人机影像做扩散压缩与分块重建。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/drone-compression-hpc/" target="_blank" rel="noopener">Demo ↗</a><a href="https://github.com/Rayford-AI/drone-compression-hpc" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="map demo">
+            <a class="thumb" href="https://rayford295.github.io/vgi-spatial-bias/" target="_blank" rel="noopener"><img src="assets/projects/vgi.webp" alt="Buildings detected from remote sensing" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">I-GUIDE Summer School 2026</div><h3>VGI Spatial Bias</h3>
+              <p><span class="en">Detecting and correcting gaps in OpenStreetMap with LiDAR and aerial imagery, across all 102 Illinois counties.</span><span class="zh">用激光雷达与航空影像发现并修正 OpenStreetMap 的空间偏差，覆盖伊利诺伊州全部 102 个县。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/vgi-spatial-bias/" target="_blank" rel="noopener">Demo ↗</a><a href="https://github.com/Rayford-AI/vgi-spatial-bias" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="assess map">
+            <a class="thumb" href="https://github.com/Rayford-AI/debris-estimate" target="_blank" rel="noopener"><img src="assets/projects/debris.webp" alt="Post-storm imagery of Treasure Island" loading="lazy"></a>
+            <div class="body"><div class="tag">In progress</div><h3>Debris Estimate</h3>
+              <p><span class="en">Estimating post-hurricane debris volume from AlphaEarth embeddings, imagery change and staged models.</span><span class="zh">结合 AlphaEarth 嵌入、影像变化与分阶段模型估算飓风后的废墟量。</span></p>
+              <div class="links"><a href="https://github.com/Rayford-AI/debris-estimate" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="assess demo">
+            <a class="thumb" href="demo/"><img src="assets/demo/ray-assess-demo-poster.png" alt="Ray Assess demo" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">Interactive demo</div><h3>Ray Assess</h3>
+              <p><span class="en">Parcel-level damage scores with evidence and confidence on a historical hurricane.</span><span class="zh">在一次历史飓风上展示地块级损毁评分，附证据与置信度。</span></p>
+              <div class="links"><a class="demo" href="demo/">Demo ↗</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="agents">
+            <a class="thumb" href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener"><img src="assets/research/geolocator.png" alt="GeoLocator" loading="lazy"></a>
+            <div class="body"><div class="tag">Applied Sciences 2024</div><h3>GeoLocator</h3>
+              <p><span class="en">A location-integrated multimodal model that shows how much a photo reveals about where it was taken.</span><span class="zh">融合位置信息的多模态大模型，揭示一张照片会泄露多少地理隐私。</span></p>
+              <div class="links"><a href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/GeoLocator" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="map">
+            <a class="thumb contain" href="https://github.com/Rayford-AI/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener"><img src="assets/research/text-sam-tree-segmentation.png" alt="Tree segmentation with Text SAM" loading="lazy"></a>
+            <div class="body"><div class="tag">Esri Press · book chapter</div><h3>Text SAM Tree Segmentation</h3>
+              <p><span class="en">Segment Anything in ArcGIS Online for tree canopy and urban greening analysis.</span><span class="zh">在 ArcGIS Online 中用 Segment Anything 分割树冠，分析城市绿化。</span></p>
+              <div class="links"><a href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener">Book</a><a href="https://github.com/Rayford-AI/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="map demo">
+            <a class="thumb contain" href="https://rayford295.github.io/geothermal-awareness/" target="_blank" rel="noopener"><img src="assets/projects/geothermal.webp" alt="Geothermal search interest maps" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">DOE project · GATES</div><h3>Geothermal Awareness</h3>
+              <p><span class="en">Who searches for geothermal energy, and what people say about it, from search, news and social media, 2019 to 2026.</span><span class="zh">谁在搜索地热能、人们怎么谈论它：基于搜索、新闻与社交媒体的 2019–2026 年分析。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/geothermal-awareness/" target="_blank" rel="noopener">Demo ↗</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="res demo">
+            <a class="thumb" href="https://rayford295.github.io/rayford-knowledge-atlas/" target="_blank" rel="noopener"><img src="assets/projects/atlas.webp" alt="Knowledge atlas graph" loading="lazy"><span class="badge">Live demo</span></a>
+            <div class="body"><div class="tag">Interactive graph</div><h3>Knowledge Atlas</h3>
+              <p><span class="en">A navigable graph linking what we read to the papers, repositories and workflows it became.</span><span class="zh">一张可浏览的知识图谱，把读过的文献和由此产出的论文、仓库、工作流连在一起。</span></p>
+              <div class="links"><a class="demo" href="https://rayford295.github.io/rayford-knowledge-atlas/" target="_blank" rel="noopener">Demo ↗</a><a href="https://github.com/Rayford-AI/rayford-knowledge-atlas" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="res">
+            <a class="thumb" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener"><div class="glyph">AutoGeoAI</div></a>
+            <div class="body"><div class="tag">Curated list</div><h3>Awesome Autonomous GeoAI</h3>
+              <p><span class="en">Papers, tools and benchmarks for autonomous GeoAI and AI for science.</span><span class="zh">自主 GeoAI 与 AI for Science 的论文、工具与基准合集。</span></p>
+              <div class="links"><a class="demo" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener">Site ↗</a><a href="https://github.com/Rayford-AI/awesome-autonomous-geoai" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+
+          <article class="card reveal" data-t="res">
+            <a class="thumb" href="https://github.com/Rayford-AI/awesome-3dgs-geoai" target="_blank" rel="noopener"><div class="glyph">3DGS</div></a>
+            <div class="body"><div class="tag">Curated list · EN / 中文</div><h3>Awesome 3DGS GeoAI</h3>
+              <p><span class="en">Bilingual resources on 3D Gaussian Splatting for GeoAI and disaster mapping.</span><span class="zh">3D 高斯泼溅在 GeoAI 与灾害制图中的中英双语资源。</span></p>
+              <div class="links"><a href="https://github.com/Rayford-AI/awesome-3dgs-geoai" target="_blank" rel="noopener">Code</a></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" style="padding-top:0">
+      <div class="wrap">
+        <div class="eyebrow reveal"><span class="en">Publications</span><span class="zh">论文</span></div>
+        <h2 class="reveal"><span class="en">Published, <em>with code to match.</em></span><span class="zh">已发表，<em>并配有代码。</em></span></h2>
+        <ol class="pubs" id="pubs">
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">RAY: Resilience Assistant for You. Accountability Enforced, Not Promised: A Harness for GeoAI Agents in Disaster Intelligence</span><span class="v">ACM SIGSPATIAL 2026, OASIS Track A</span></div><div class="links"><a href="https://rayford295.github.io/ray-resilience/" target="_blank" rel="noopener">Demo</a><a href="https://github.com/Rayford-AI/ray-resilience" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">CrossViewGate: When Satellite and Street Views Disagree</span><span class="v">GeoSearch ’26, ACM SIGSPATIAL Workshop</span></div><div class="links"><a href="https://dl.acm.org/doi/10.1145/3849732.3857333" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/CrossViewGate" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">Drone Imagery Compression on GPU Supercomputers</span><span class="v">SC26 Poster Session</span></div><div class="links"><a href="https://rayford295.github.io/drone-compression-hpc/" target="_blank" rel="noopener">Page</a><a href="https://github.com/Rayford-AI/drone-compression-hpc" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">Satellite-to-Street: Synthesizing Post-Disaster Views from Satellite Imagery via Generative Vision Models</span><span class="v">IGARSS 2026</span></div><div class="links"><a href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener">arXiv</a><a href="https://github.com/Rayford-AI/Sat2Street-DisasterGen" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">RAPID: A Reproducible Multi-Agent Pipeline for Interpretable Disaster Damage Assessment from Satellite and Street-View Imagery</span><span class="v">arXiv preprint</span></div><div class="links"><a href="https://arxiv.org/abs/2606.21819" target="_blank" rel="noopener">arXiv</a><a href="https://github.com/Rayford-AI/RAPID" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">DamageArbiter: A Multimodal Arbitration Framework for Disaster Damage Assessment from Street-View Imagery</span><span class="v">arXiv preprint</span></div><div class="links"><a href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener">arXiv</a><a href="https://github.com/Rayford-AI/DamageArbiter" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2026</span><div><span class="t">Generative AI for Disaster Resilience</span><span class="v">Chapter in <i>Geography in the Age of Generative AI</i>, CRC Press</span></div><div class="links"><a href="https://rayford295.github.io/GenAI4Dresilience/" target="_blank" rel="noopener">Page</a><a href="https://github.com/Rayford-AI/GenAI4Dresilience" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2025</span><div><span class="t">Hyperlocal Disaster Damage Assessment Using Bi-temporal Street-view Imagery and Pre-trained Vision Models</span><span class="v">Computers, Environment and Urban Systems</span></div><div class="links"><a href="https://doi.org/10.1016/j.compenvurbsys.2025.102335" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/Bi-Temporal-StreetView" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2025</span><div><span class="t">Perceiving Multidimensional Disaster Damages from Street-View Images Using Visual-Language Models</span><span class="v">International Cartographic Conference 2025 · <b>Best Student Paper</b></span></div><div class="links"><a href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/DisasterVLP" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">2024</span><div><span class="t">GeoLocator: A Location-Integrated Large Multimodal Model for Inferring Geo-Privacy</span><span class="v">Applied Sciences</span></div><div class="links"><a href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener">Paper</a><a href="https://github.com/Rayford-AI/GeoLocator" target="_blank" rel="noopener">Code</a></div></li>
+          <li class="reveal"><span class="yr">Book</span><div><span class="t">Object Detection and Segmentation Using Text SAM in ArcGIS Online</span><span class="v">Esri Press</span></div><div class="links"><a href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener">Book</a><a href="https://github.com/Rayford-AI/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener">Code</a></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="people" style="padding-top:0">
+      <div class="wrap">
+        <div class="eyebrow reveal"><span class="en">People</span><span class="zh">成员</span></div>
+        <h2 class="reveal"><span class="en">The <em>people</em> behind the work.</span><span class="zh">做这些研究的<em>人</em>。</span></h2>
+        <div class="people">
+          <a class="person reveal" href="https://www.linkedin.com/in/yifan-yang-14a898186" target="_blank" rel="noopener">
+            <div class="ph"><img src="assets/team/yifan-yang.png" alt="Yifan Yang" loading="lazy"></div>
+            <h3><span class="en">Yifan Yang</span><span class="zh">杨一帆</span></h3>
+            <div class="role"><span class="en">LAB LEAD · PH.D. CANDIDATE</span><span class="zh">实验室负责人 · 博士候选人</span></div>
+            <p><span class="en">Street-view disaster assessment, visual-language models, generative and autonomous GeoAI.</span><span class="zh">街景灾害评估、视觉语言模型、生成式与自主 GeoAI。</span></p>
+          </a>
+          <a class="person reveal" href="https://www.linkedin.com/in/leizou" target="_blank" rel="noopener">
+            <div class="ph"><img src="assets/team/lei-zou.jpeg" alt="Lei Zou" loading="lazy"></div>
+            <h3>Dr. Lei Zou</h3>
+            <div class="role"><span class="en">SCIENTIFIC ADVISOR</span><span class="zh">科学顾问</span></div>
+          </a>
+          <a class="person reveal" href="https://www.linkedin.com/in/zhengzhongtu" target="_blank" rel="noopener">
+            <div class="ph"><img src="assets/team/zhengzhong-tu.jpeg" alt="Zhengzhong Tu" loading="lazy"></div>
+            <h3>Dr. Zhengzhong Tu</h3>
+            <div class="role"><span class="en">TECHNICAL ADVISOR</span><span class="zh">技术顾问</span></div>
+          </a>
+          <a class="person reveal" href="https://www.linkedin.com/in/heng-cai-44b90a85" target="_blank" rel="noopener">
+            <div class="ph"><img src="assets/team/heng-cai.jpeg" alt="Heng Cai" loading="lazy"></div>
+            <h3>Dr. Heng Cai</h3>
+            <div class="role"><span class="en">TECHNICAL ADVISOR</span><span class="zh">技术顾问</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <div class="eyebrow reveal"><span class="en">Work with us</span><span class="zh">一起合作</span></div>
+        <h2 class="reveal"><span class="en">Every place, <em>ready and recoverable.</em></span><span class="zh">让每一个地方，<em>有备无患，灾后可复。</em></span></h2>
+        <p class="lede reveal" style="margin:0 auto 10px">
+          <span class="en">Questions, data, collaborations or a talk invitation: write to us, or open an issue on any repository.</span>
+          <span class="zh">问题、数据、合作或讲座邀请，欢迎来信，也可以在任何仓库提 issue。</span>
+        </p>
+        <div class="cta reveal">
+          <a class="btn btn-gold" href="mailto:contact@rayford-ai.com">contact@rayford-ai.com</a>
+          <a class="btn btn-ghost" href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">The Ray Platform</span>
-        <h2>Start with disaster. Build toward physical-world intelligence.</h2>
-        <p>Ray is the intelligence system for real-world perception, evidence, and action — starting with the most urgent workflow in property decisions: what changed after a disaster, and what it means.</p>
-      </div>
-      <div class="prod-grid">
-        <article class="prod-card ac rv d1">
-          <div class="prod-icon">🛰️</div>
-          <span class="prod-kicker">Ray Assess</span>
-          <h3>Property-level damage evidence</h3>
-          <p>Compare pre-event and post-event imagery, score visible damage, attach evidence, and show confidence at the parcel level for auditable assessment workflows.</p>
-        </article>
-        <article class="prod-card cl rv d2">
-          <div class="prod-icon">📋</div>
-          <span class="prod-kicker">Ray Claims</span>
-          <h3>Claims and inspection triage</h3>
-          <p>Rank properties for adjuster review and package imagery, metadata, and explanations for faster, more defensible insurance claim workflows.</p>
-        </article>
-        <article class="prod-card ri rv d3">
-          <div class="prod-icon">🗺️</div>
-          <span class="prod-kicker">Ray Risk</span>
-          <h3>Hazard context and mitigation intelligence</h3>
-          <p>Connect damage evidence with hazard context, mitigation priorities, and resilience planning for properties and critical infrastructure.</p>
-        </article>
-      </div>
-      <div class="project-band rv d4" id="evaluation">
-        <div>
-          <span class="paper-meta">Live Research Evaluation</span>
-          <h3>Human Evaluation of Post-disaster Street-view Generation</h3>
-          <p>Help review generated post-disaster street-view images and severity ratings for the disaster GeoAI research behind Rayford AI.</p>
-        </div>
-        <div class="project-actions">
-          <a class="btn-p" href="https://human-eval.rayford-ai.com/" target="_blank" rel="noopener">Open Evaluation ↗</a>
-          <a class="btn-s" href="https://github.com/rayford295/Sat2Street-DisasterGen" target="_blank" rel="noopener">Research Repo ↗</a>
-        </div>
-      </div>
+      <div>© 2026 Rayford AI Lab</div>
+      <nav aria-label="Footer">
+        <a href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/company/rayford-ai" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener">AutoGeoAI4Sci</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
     </div>
-  </section>
+  </footer>
 
-  <div class="divider"></div>
+  <script>
+  (() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="sec proc-sec">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Evidence Layer</span>
-        <h2>From geospatial data to review-ready action.</h2>
-      </div>
-      <div class="proc-steps">
-        <div class="proc-step rv d1">
-          <div class="proc-num">01</div>
-          <h4>Link world context</h4>
-          <p>Parcel records, hazard context, built-environment data, and pre-event imagery assembled for the target area.</p>
-        </div>
-        <div class="proc-step rv d2">
-          <div class="proc-num">02</div>
-          <h4>Compare multimodal evidence</h4>
-          <p>Street-view, satellite, drone, and field imagery across time — fused and aligned at the property level.</p>
-        </div>
-        <div class="proc-step rv d3">
-          <div class="proc-num">03</div>
-          <h4>Arbitrate model signals</h4>
-          <p>Damage scoring, multimodal reasoning, and confidence estimates via Ray's CLIP-enhanced arbitration layer.</p>
-        </div>
-        <div class="proc-step rv d4">
-          <div class="proc-num">04</div>
-          <h4>Export audit trail</h4>
-          <p>Action-ready evidence packages with scores, confidence, and imagery for downstream human review.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ COMPETITIVE EDGE ============ -->
-  <section class="sec" id="edge">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Competitive Edge</span>
-        <h2>Not another imagery vendor or pre-event risk score.</h2>
-        <p>Rayford AI focuses on post-event decisions: what changed, how severe it is, what evidence supports the score, and what a human reviewer should inspect next.</p>
-      </div>
-      <div class="edge-grid">
-        <article class="edge-card rv d1">
-          <span class="edge-n">01</span>
-          <h3>Street-view plus remote sensing</h3>
-          <p>Imagery-only tools show pixels. Ray Assess compares ground and overhead evidence at the property level — a dual-sensor approach no pure satellite vendor offers.</p>
-        </article>
-        <article class="edge-card rv d2">
-          <span class="edge-n">02</span>
-          <h3>Built for disaster response</h3>
-          <p>Pre-event underwriting tools forecast risk. Ray packages post-event damage evidence for recovery decisions — different workflow, different timing, different customer.</p>
-        </article>
-        <article class="edge-card rv d3">
-          <span class="edge-n">03</span>
-          <h3>Research-backed audit trail</h3>
-          <p>Model arbitration, confidence, and paper-backed methods make output easier for public teams to review, defend, and submit to FEMA or insurers.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ RESEARCH ============ -->
-  <section class="sec res-sec" id="technology">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Technology Stack</span>
-        <h2>A research-backed geospatial physical AI engine.</h2>
-        <p>Rayford AI translates peer-reviewed GeoAI research into a practical intelligence layer for physical-world perception, evidence, and action.</p>
-      </div>
-      <div class="paper-grid">
-        <article class="paper-card rv d1">
-          <div class="paper-img"><img src="assets/research/satellite-to-street.png" alt="Satellite-to-Street framework" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">IGARSS 2026 · Conference Paper</span>
-            <h4>Satellite-to-Street: Synthesizing Post-Disaster Views from Satellite Imagery</h4>
-            <p>Generating street-level disaster evidence from satellite context when field imagery is missing.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://arxiv.org/abs/2603.20697" target="_blank" rel="noopener">Paper ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/Sat2Street-DisasterGen" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-        <article class="paper-card rv d2">
-          <div class="paper-img"><img src="assets/research/damagearbiter.png" alt="DamageArbiter framework" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">2026 · Preprint</span>
-            <h4>DamageArbiter: CLIP-Enhanced Multimodal Arbitration for Hurricane Damage Assessment</h4>
-            <p>The arbitration layer behind Ray's confidence, disagreement, and evidence-ranking design.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://arxiv.org/abs/2603.14837" target="_blank" rel="noopener">Paper ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/DamageArbiter" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-        <article class="paper-card rv d3">
-          <div class="paper-img"><img src="assets/research/bi-temporal-streetview.png" alt="Bi-temporal assessment" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">Computers, Environment and Urban Systems · 2025</span>
-            <h4>Hyperlocal Disaster Damage Assessment Using Bi-temporal Street-view Imagery</h4>
-            <p>The journal foundation for pre/post street-view comparison at the property scale.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://www.sciencedirect.com/science/article/pii/S0198971525000882" target="_blank" rel="noopener">Paper ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/Bi-Temporal-StreetView" target="_blank" rel="noopener">GitHub ↗</a>
-              <a class="pl-a" href="https://www.mosaic51.com/featured/how-texas-am-is-pioneering-damage-assessment-using-mosaic-imagery-from-hurricane-milton/" target="_blank" rel="noopener">Mosaic ↗</a>
-            </div>
-          </div>
-        </article>
-        <article class="paper-card rv d1">
-          <div class="paper-img"><img src="assets/research/disastervlp.png" alt="DisasterVLP" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">ICC 2025 · Best Student Paper</span>
-            <h4>DisasterVLP: Perceiving Multidimensional Disaster Damages via Visual-Language Models</h4>
-            <p>A visual-language foundation for reading multiple forms of disaster damage from street scenes.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://doi.org/10.5194/ica-abs-10-310-2025" target="_blank" rel="noopener">Paper ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/DisasterVLP" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-        <article class="paper-card rv d2">
-          <div class="paper-img"><img src="assets/research/geolocator.png" alt="GeoLocator" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">Applied Sciences · 2024</span>
-            <h4>GeoLocator: A Location-Integrated Large Multimodal Model for Geo-Privacy Inference</h4>
-            <p>Location-aware multimodal reasoning and geo-privacy at the foundational level.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://www.mdpi.com/2076-3417/14/16/7091" target="_blank" rel="noopener">Paper ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/GeoLocator" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-        <article class="paper-card rv d3">
-          <div class="paper-img"><img src="assets/research/text-sam-tree-segmentation.png" alt="Text SAM segmentation" loading="lazy"></div>
-          <div class="paper-body">
-            <span class="paper-meta">Esri Press · Spatial AI Foundation</span>
-            <h4>Object Detection and Segmentation Using Text SAM in ArcGIS Online</h4>
-            <p>Applied geospatial computer vision workflows informing Rayford AI's product craft.</p>
-            <div class="paper-links">
-              <a class="pl-a" href="https://www.esri.com/en-us/esri-press/browse/security-first-geospatial-workflows-for-a-safe-and-equitable-world" target="_blank" rel="noopener">Book ↗</a>
-              <a class="pl-a" href="https://github.com/rayford295/ArcGIS-SAM-TreeSegmentation" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CUSTOMERS ============ -->
-  <section class="sec cust-sec" id="customers">
-    <div class="wrap">
-      <div class="cust-layout">
-        <div>
-          <div class="sec-hd rv" style="margin-bottom:0">
-            <span class="eyebrow">Initial Wedge</span>
-            <h2>Starting with emergency management, expanding to physical-world intelligence.</h2>
-          </div>
-          <div style="margin-top:36px" class="rv">
-            <div class="pilot-card">
-              <span class="pilot-badge">2026 PILOTS OPEN</span>
-              <h3>Pilot pricing available.</h3>
-              <p>We are opening a small number of early pilots for historical-event validation and review-ready property assessment workflows.</p>
-              <a href="mailto:contact@rayford-ai.com">Discuss a pilot →</a>
-            </div>
-          </div>
-        </div>
-        <div class="cust-list rv">
-          <div class="cust-item">
-            <h3>Emergency management offices</h3>
-            <p>Prioritize preliminary damage assessment when a disaster creates more properties than field teams can inspect. Ray Assess provides ranked, evidence-backed triage.</p>
-          </div>
-          <div class="cust-item">
-            <h3>Local governments, GIS, and infrastructure teams</h3>
-            <p>Convert street-level and aerial data into auditable property and asset layers for assessment, resilience planning, and operational review after major events.</p>
-          </div>
-          <div class="cust-item">
-            <h3>Adjusters and insurance partners</h3>
-            <p>Use the same evidence package for claims triage once the public-sector workflow is validated — shared evidence, faster review, defensible output.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MARKET ============ -->
-  <section class="sec" id="validation">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Market Timing</span>
-        <h2>Physical-world risk is rising. Evidence workflows are still slow.</h2>
-      </div>
-      <div class="mkt-grid">
-        <div class="mkt-card rv d1">
-          <strong>27</strong>
-          <p>U.S. billion-dollar weather and climate disasters in 2024 — the physical world is changing faster than assessment infrastructure can keep pace.</p>
-          <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener">NOAA ↗</a></cite>
-        </div>
-        <div class="mkt-card rv d2">
-          <strong>$182.7B</strong>
-          <p>Estimated U.S. damage from 2024 billion-dollar disasters — a market where faster evidence means faster recovery and lower total cost.</p>
-          <cite><a href="https://www.climate.gov/news-features/blogs/beyond-data/2024-active-year-us-billion-dollar-weather-and-climate-disasters" target="_blank" rel="noopener">NOAA ↗</a></cite>
-        </div>
-        <div class="mkt-card rv d3">
-          <strong>$137B</strong>
-          <p>Global insured natural catastrophe losses reported for 2024 — growing year over year with no slowdown in underlying physical risk.</p>
-          <cite><a href="https://www.swissre.com/institute/research/sigma-research/sigma-2025-01-natural-catastrophes-trend.html" target="_blank" rel="noopener">Swiss Re ↗</a></cite>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TEAM ============ -->
-  <section class="sec" id="team" style="border-top:1px solid var(--border)">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Team</span>
-        <h2>Built from GeoAI research for physical-world intelligence.</h2>
-      </div>
-      <div class="team-grid">
-        <article class="team-card rv d1">
-          <div class="team-av"><img src="assets/team/yifan-yang.png" alt="Yifan Yang"></div>
-          <span class="team-role">Founder &amp; Technical Lead</span>
-          <h3>Yifan Yang</h3>
-          <p>Technical lead for Ray, focused on multimodal spatial intelligence, street-view analysis, model arbitration, and autonomous GeoAI systems.</p>
-          <a class="team-lnk" href="https://www.linkedin.com/in/yifan-yang-14a898186/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </article>
-        <article class="team-card rv d2">
-          <div class="team-av"><img src="assets/team/lei-zou.jpeg" alt="Dr. Lei Zou"></div>
-          <span class="team-role">Scientific &amp; Technical Advisor</span>
-          <h3>Dr. Lei Zou</h3>
-          <p>Advisor for the GeoAI and spatial-intelligence foundation behind Rayford AI's research-to-venture path and disaster resilience direction.</p>
-          <a class="team-lnk" href="https://www.linkedin.com/in/leizou/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </article>
-        <article class="team-card rv d3">
-          <div class="team-av"><img src="assets/team/zhengzhong-tu.jpeg" alt="Dr. Zhengzhong Tu"></div>
-          <span class="team-role">Technical Advisor</span>
-          <h3>Dr. Zhengzhong Tu</h3>
-          <p>Committee advisor for computer vision, multimodal model design, and validation strategy for Ray's geospatial physical AI engine.</p>
-          <a class="team-lnk" href="https://www.linkedin.com/in/zhengzhongtu/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </article>
-        <article class="team-card rv d4">
-          <div class="team-av"><img src="assets/team/heng-cai.jpeg" alt="Dr. Heng Cai"></div>
-          <span class="team-role">Technical Advisor</span>
-          <h3>Dr. Heng Cai</h3>
-          <p>Committee advisor for built environment context, infrastructure intelligence, and product-risk review for real-world decision workflows.</p>
-          <a class="team-lnk" href="https://www.linkedin.com/in/heng-cai-44b90a85/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ROADMAP ============ -->
-  <section class="sec road-sec" id="roadmap">
-    <div class="wrap">
-      <div class="sec-hd rv">
-        <span class="eyebrow">Execution Plan · AggieX 2026</span>
-        <h2>From research assets to a pilot-ready geospatial physical AI wedge.</h2>
-      </div>
-      <ol class="timeline">
-        <li class="tl-item rv d1" data-s="active">
-          <div class="tl-dot">01</div>
-          <span class="tl-status">In Progress</span>
-          <p>Complete 40 customer discovery interviews across emergency management, GIS, insurers, adjusters, resilience teams, and recovery consultants.</p>
-        </li>
-        <li class="tl-item rv d2" data-s="active">
-          <div class="tl-dot">02</div>
-          <span class="tl-status">In Progress</span>
-          <p>Build a working Ray Assess demo for property-level and evidence-driven triage on a historical event.</p>
-        </li>
-        <li class="tl-item rv d3" data-s="planned">
-          <div class="tl-dot">03</div>
-          <span class="tl-status">Planned</span>
-          <p>Create two validation case studies showing before-and-after imagery, evidence, confidence, and workflow relevance.</p>
-        </li>
-        <li class="tl-item rv d4" data-s="planned">
-          <div class="tl-dot">04</div>
-          <span class="tl-status">Planned</span>
-          <p>Secure 3 pilot or letter-of-intent conversations with serious target customers by Demo Day, August 7, 2026.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============ CTA ============ -->
-  <section class="cta-sec">
-    <span class="eyebrow">Rayford AI</span>
-    <h2>A technology company for the physical world.</h2>
-    <p>We are scheduling customer discovery and pilot conversations with emergency management, GIS, insurance, resilience, and infrastructure teams.</p>
-    <div class="cta-actions">
-      <a class="btn-p" href="mailto:contact@rayford-ai.com">Discuss a Pilot →</a>
-      <a class="btn-s" href="https://autogeoai4sci.github.io/" target="_blank" rel="noopener">Research Origin ↗</a>
-      <a class="btn-s" href="demo/">View Demo</a>
-      <a class="btn-s" href="https://human-eval.rayford-ai.com/" target="_blank" rel="noopener">Human Evaluation ↗</a>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="foot-inner">
-    <div class="foot-brand">
-      <div class="nav-brand">
-        <img class="nav-logo" src="assets/brand/logo-mark.svg" alt="Rayford AI mark">
-        <span class="nav-wordmark">Rayford AI</span>
-      </div>
-      <p>Rayford AI builds Ray, a geospatial physical AI system for auditable property and infrastructure intelligence.</p>
-    </div>
-    <nav class="foot-links" aria-label="Footer links">
-      <a href="mailto:contact@rayford-ai.com">contact@rayford-ai.com</a>
-      <a href="https://github.com/Rayford-AI" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/company/rayford-ai" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://human-eval.rayford-ai.com/" target="_blank" rel="noopener">Human Evaluation ↗</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-    <span class="foot-copy">© 2026 Rayford AI</span>
-  </div>
-</footer>
-
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('on')),
-    { threshold: .1, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.rv').forEach(el => observer.observe(el));
-
-  // Mobile nav
-  const ham = document.querySelector('.ham');
-  const nav = document.getElementById('primary-nav');
-  ham?.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    ham.setAttribute('aria-expanded', open);
-  });
-
-  // Language switcher — wire up existing site.js i18n if present
-  document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-lang-toggle]').forEach(b => b.setAttribute('aria-pressed','false'));
-      btn.setAttribute('aria-pressed','true');
-      document.body.dataset.lang = btn.dataset.langToggle;
+    // language
+    const syncLang = () => { root.lang = root.classList.contains('zh') ? 'zh-CN' : 'en'; };
+    document.getElementById('lang').addEventListener('click', () => {
+      const zh = root.classList.toggle('zh');
+      syncLang();
+      try { localStorage.setItem('rayford-language', zh ? 'zh' : 'en'); } catch (e) {}
     });
-  });
-</script>
+    syncLang();
 
-<!-- Preserve existing i18n / site logic -->
-<script src="assets/site.js?v=20260529" defer></script>
+    // nav background
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // counters, computed from the page itself
+    const cards = [...document.querySelectorAll('#grid .card')];
+    const has = (c, t) => c.dataset.t.split(' ').includes(t);
+    const counts = {
+      projects: cards.length,
+      demos: cards.filter(c => has(c, 'demo')).length,
+      pubs: document.querySelectorAll('#pubs li').length,
+    };
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const end = counts[el.dataset.count];
+      if (reduce) { el.textContent = end; return; }
+      const t0 = performance.now() + 500;
+      const step = now => {
+        const p = Math.min(1, Math.max(0, (now - t0) / 1400));
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+
+    // scroll reveal
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      io.observe(el);
+    });
+
+    // filters
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => { c.classList.toggle('on', c === chip); c.setAttribute('aria-pressed', c === chip); });
+      const f = chip.dataset.f;
+      cards.forEach(c => {
+        c.classList.toggle('hide', f !== 'all' && !has(c, f));
+        c.classList.add('in');
+      });
+    }));
+
+    // card tilt and glow, mouse only
+    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (fine && !reduce) {
+      cards.forEach(card => {
+        card.addEventListener('pointermove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          card.style.setProperty('--mx', x * 100 + '%');
+          card.style.setProperty('--my', y * 100 + '%');
+          card.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 6}deg) rotateY(${(x - 0.5) * 8}deg) translateY(-4px)`;
+        });
+        card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+      });
+      const glow = document.querySelector('.glow-cursor');
+      addEventListener('pointermove', e => {
+        glow.style.opacity = 1;
+        glow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      }, { passive: true });
+    }
+
+    // before / after slider
+    const ba = document.getElementById('ba');
+    let pos = 50;
+    const setPos = p => { pos = Math.max(0, Math.min(100, p)); ba.style.setProperty('--pos', pos + '%'); ba.setAttribute('aria-valuenow', Math.round(pos)); };
+    const fromEvent = e => { const r = ba.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100); };
+    let drag = false;
+    ba.addEventListener('pointerdown', e => { drag = true; ba.setPointerCapture(e.pointerId); fromEvent(e); });
+    ba.addEventListener('pointermove', e => { if (drag || e.pointerType === 'mouse') fromEvent(e); });
+    ba.addEventListener('pointerup', () => { drag = false; });
+    ba.addEventListener('pointercancel', () => { drag = false; });
+    ba.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { setPos(pos - 5); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setPos(pos + 5); e.preventDefault(); }
+    });
+
+    // hero map: CONUS dot field, radar sweep, a hurricane track and event pings
+    const cv = document.getElementById('map'), ctx = cv.getContext('2d');
+    const US = [[-124.7,48.4],[-123,49],[-95,49],[-89.6,48],[-84.8,46.9],[-82.5,45.3],[-82.4,43],[-79,43.3],[-76.5,44.2],[-75,45],[-71.5,45],[-69.2,47.4],[-67.8,47],[-67,44.8],[-70,43.7],[-70.6,42],[-70,41.6],[-72,41],[-74,40.5],[-74,39.7],[-75.5,38.5],[-76,37],[-75.7,35.5],[-77,34.6],[-79,33.5],[-81,32],[-81.4,30.5],[-80.6,28.5],[-80,26.5],[-80.4,25.2],[-81.2,25.2],[-81.8,26.5],[-82.7,27.8],[-82.8,29.2],[-84,30],[-85.4,29.7],[-86.5,30.4],[-88.5,30.3],[-89.6,30.1],[-89.4,29],[-90.5,29.1],[-92,29.6],[-93.8,29.7],[-94.8,29.3],[-97.2,27.6],[-97.4,25.9],[-99.2,26.6],[-100.3,28.2],[-101.4,29.8],[-103,29],[-104.5,29.7],[-106.5,31.8],[-108.2,31.3],[-111,31.3],[-114.8,32.5],[-117.1,32.5],[-118.5,34],[-120.6,34.6],[-121.9,36.6],[-122.5,37.8],[-123.8,39.8],[-124.2,41.9],[-124.5,43],[-124,46.2]];
+    const EVENTS = [
+      { ll: [-82.75, 27.77], name: 'HURRICANE MILTON 2024' },
+      { ll: [-81.87, 26.64], name: 'HURRICANE IAN 2022' },
+      { ll: [-83.6, 29.9], name: 'HURRICANE HELENE 2024' },
+      { ll: [-94.8, 29.3], name: 'GALVESTON DRONE SURVEY' },
+      { ll: [-118.13, 34.19], name: 'EATON FIRE 2025' },
+      { ll: [-88.24, 40.11], name: 'ILLINOIS VGI AUDIT' },
+      { ll: [-104.8, 38.83], name: 'COLORADO SPRINGS VGI' },
+    ];
+    const TRACK = [[-91.5, 21.8], [-89.6, 22.6], [-87.4, 23.6], [-85.2, 25.2], [-83.6, 26.5], [-82.6, 27.3], [-81.2, 28.0], [-79.5, 28.6], [-77.5, 29.2]];
+    let W, H, dots = [], proj, raf;
+    const inside = (x, y, poly) => {
+      let c = false;
+      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+        const [xi, yi] = poly[i], [xj, yj] = poly[j];
+        if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
+      }
+      return c;
+    };
+    function layout() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const mobile = W < 820;
+      const lon0 = -126, lon1 = -64, lat0 = 20, lat1 = 50.5, k = 1.2;
+      const boxW = mobile ? W * 1.3 : W * 0.72, boxH = H * 0.86;
+      const s = Math.min(boxW / (lon1 - lon0), boxH / ((lat1 - lat0) * k));
+      const ox = mobile ? (W - (lon1 - lon0) * s) / 2 : W - (lon1 - lon0) * s - W * 0.02;
+      const oy = mobile ? H * 0.06 : (H - (lat1 - lat0) * k * s) / 2 + 20;
+      proj = ([lon, lat]) => [ox + (lon - lon0) * s, oy + (lat1 - lat) * k * s];
+      const usP = US.map(proj);
+      dots = []; const g = 12;
+      for (let y = 0; y < H; y += g) for (let x = 0; x < W; x += g) if (inside(x, y, usP)) dots.push([x, y, Math.random()]);
+    }
+    let ev = 0, evT = 0;
+    const hudE = document.getElementById('hud-event'), hudC = document.getElementById('hud-coord');
+    function frame(t) {
+      ctx.clearRect(0, 0, W, H);
+      const sx = ((t / 5200) % 1) * W * 1.3 - W * 0.15;
+      for (const [x, y, r] of dots) {
+        const hit = Math.max(0, 1 - Math.abs(x - sx) / 140);
+        const tw = 0.32 + 0.14 * Math.sin(t / 900 + r * 20);
+        ctx.fillStyle = hit > 0.02 ? `rgba(255,${200 + 30 * hit | 0},${120 + 80 * hit | 0},${tw + hit * 0.7})` : `rgba(236,200,160,${tw})`;
+        const sz = 1.3 + hit * 1.4;
+        ctx.fillRect(x - sz / 2, y - sz / 2, sz, sz);
+      }
+      const grad = ctx.createLinearGradient(sx - 160, 0, sx, 0);
+      grad.addColorStop(0, 'rgba(242,179,61,0)'); grad.addColorStop(1, 'rgba(242,179,61,.10)');
+      ctx.fillStyle = grad; ctx.fillRect(sx - 160, 0, 160, H);
+      ctx.fillStyle = 'rgba(255,216,138,.35)'; ctx.fillRect(sx, 0, 1, H);
+
+      const pts = TRACK.map(proj), prog = (t / 7000) % 1.25;
+      ctx.lineWidth = 1.2; ctx.setLineDash([3, 5]); ctx.strokeStyle = 'rgba(212,81,47,.5)';
+      ctx.beginPath(); pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); ctx.setLineDash([]);
+      if (prog <= 1) {
+        const kk = prog * (pts.length - 1), i0 = Math.floor(kk), f = kk - i0;
+        const a = pts[i0], b = pts[Math.min(i0 + 1, pts.length - 1)];
+        const hx = a[0] + (b[0] - a[0]) * f, hy = a[1] + (b[1] - a[1]) * f;
+        const rg = ctx.createRadialGradient(hx, hy, 0, hx, hy, 34);
+        rg.addColorStop(0, 'rgba(255,120,60,.55)'); rg.addColorStop(1, 'rgba(255,120,60,0)');
+        ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(hx, hy, 34, 0, 7); ctx.fill();
+        ctx.save(); ctx.translate(hx, hy); ctx.rotate(-t / 300); ctx.strokeStyle = 'rgba(255,200,150,.85)'; ctx.lineWidth = 1.4;
+        for (let s = 0; s < 2; s++) { ctx.beginPath(); for (let q = 0; q <= 1; q += 0.05) { const ang = q * 4 + s * Math.PI, rr = 3 + q * 13; ctx.lineTo(Math.cos(ang) * rr, Math.sin(ang) * rr); } ctx.stroke(); }
+        ctx.restore();
+      }
+
+      if (t - evT > 2600) {
+        ev = (ev + 1) % EVENTS.length; evT = t;
+        const e = EVENTS[ev];
+        hudE.textContent = e.name;
+        hudC.textContent = `${e.ll[1].toFixed(2)}°N ${Math.abs(e.ll[0]).toFixed(2)}°W`;
+      }
+      const ph = (t - evT) / 2600;
+      EVENTS.forEach((e, i) => {
+        const [x, y] = proj(e.ll), active = i === ev;
+        ctx.fillStyle = active ? '#ffd88a' : 'rgba(242,179,61,.75)';
+        ctx.beginPath(); ctx.arc(x, y, active ? 3.6 : 2.4, 0, 7); ctx.fill();
+        if (active && W >= 820) {
+          for (let r = 0; r < 2; r++) {
+            const p = (ph + r * 0.5) % 1;
+            ctx.strokeStyle = `rgba(255,216,138,${0.8 * (1 - p)})`; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.arc(x, y, 4 + p * 30, 0, 7); ctx.stroke();
+          }
+          ctx.font = '500 10px "JetBrains Mono", monospace'; ctx.fillStyle = 'rgba(255,216,138,.95)';
+          const tw = ctx.measureText(e.name).width, lx = x + 12 + tw > W - 8 ? x - 12 - tw : x + 12;
+          ctx.fillText(e.name, lx, y - 10);
+        }
+      });
+      if (!reduce) raf = requestAnimationFrame(frame);
+    }
+    layout();
+    addEventListener('resize', () => { layout(); if (reduce) frame(8000); });
+    if (reduce) frame(8000); else raf = requestAnimationFrame(frame);
+    document.addEventListener('visibilitychange', () => {
+      if (reduce) return;
+      cancelAnimationFrame(raf);
+      if (!document.hidden) raf = requestAnimationFrame(frame);
+    });
+  })();
+  </script>
 </body>
 </html>
