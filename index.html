@@ -225,8 +225,8 @@
     /* people */
     .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); gap: 28px; margin-top: 40px; }
     .person .ph { aspect-ratio: 1; width: min(100%, 200px); border-radius: 50%; overflow: hidden; margin-bottom: 18px; background: var(--bg2); }
-    .person .ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter .5s, transform .6s; }
-    .person:hover .ph img { filter: grayscale(0); transform: scale(1.04); }
+    .person .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .person:hover .ph img { transform: scale(1.04); }
     .person h3 { font-size: 1.3rem; }
     .person:hover h3 { color: var(--accent); }
     .person .role { font-family: var(--mono); font-size: .7rem; color: var(--dim); letter-spacing: .08em; margin: 6px 0 8px; }
@@ -530,7 +530,7 @@
           <a class="person reveal" href="https://www.linkedin.com/in/yifan-yang-14a898186" target="_blank" rel="noopener">
             <div class="ph"><img src="assets/team/yifan-yang.png" alt="Yifan Yang" loading="lazy"></div>
             <h3><span class="en">Yifan Yang</span><span class="zh">杨一帆</span></h3>
-            <div class="role"><span class="en">LAB LEAD · PH.D. CANDIDATE</span><span class="zh">实验室负责人 · 博士候选人</span></div>
+            <div class="role"><span class="en">LAB LEAD<br>PH.D. CANDIDATE</span><span class="zh">实验室负责人<br>博士候选人</span></div>
             <p><span class="en">Street-view disaster assessment, visual-language models, generative and autonomous GeoAI.</span><span class="zh">街景灾害评估、视觉语言模型、生成式与自主 GeoAI。</span></p>
           </a>
           <a class="person reveal" href="https://www.linkedin.com/in/leizou" target="_blank" rel="noopener">
